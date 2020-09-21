@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -42,10 +44,15 @@ public class Funcionario implements Serializable {
 	private String conselho;
 	private String cdConselho;
 	
+	@ManyToOne
+	@JoinColumn(name="hospital_id") 
+	private Hospital hospital;
+	
 	public Funcionario () {}
+	
 
 	public Funcionario(Integer id, String nome, LocalDate dtNascimento, boolean sexo, String nameUser, String senha,
-			Integer tipoFunc, String conselho, String cdConselho) {
+			Integer tipoFunc, String conselho, String cdConselho, Hospital hospital) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -56,7 +63,9 @@ public class Funcionario implements Serializable {
 		this.tipoFunc = tipoFunc;
 		this.conselho = conselho;
 		this.cdConselho = cdConselho;
+		this.hospital = hospital;
 	}
+
 
 
 
@@ -133,12 +142,28 @@ public class Funcionario implements Serializable {
 		this.cdConselho = cdConselho;
 	}
 
+	public Hospital getHospital() {
+		return hospital;
+	}
+
+
+	public void setHospital(Hospital hospital) {
+		this.hospital = hospital;
+	}
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
 	@Override
 	public String toString() {
-		return "Funcionario [id=" + id + ", nome=" + nome + ", dtNascimento=" + dtNascimento + ", sexo="
-				+ sexo + ", nameUser=" + nameUser + ", tipoFunc=" + tipoFunc + ", conselho=" + conselho
-				+ ", cdConselho=" + cdConselho + "]";
+		return "Funcionario [id=" + id + ", nome=" + nome + ", dtNascimento=" + dtNascimento + ", sexo=" + sexo
+				+ ", nameUser=" + nameUser + ", senha=" + senha + ", tipoFunc=" + tipoFunc + ", conselho=" + conselho
+				+ ", cdConselho=" + cdConselho + ", hospital=" + hospital + "]";
 	}
+
 
 	@Override
 	public int hashCode() {
