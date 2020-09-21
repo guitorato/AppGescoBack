@@ -1,24 +1,47 @@
 package com.gesco.domain;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
-import javax.xml.crypto.Data;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+@Entity
 public class Funcionario implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@Column(nullable = false)
 	private String nome;
-	private Data dtNascimento;
+	
+	@Column(nullable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate dtNascimento;
+	
+	@Column(nullable = false)
 	private boolean sexo;
+	
+	@Column(nullable = false)
 	private String nameUser;
+	
+	@Column(nullable = false)
 	private Integer tipoFunc;
+	
+	
 	private String conselho;
 	private String cdConselho;
 	
 	public Funcionario () {}
 
-	public Funcionario(Integer id, String nome, Data dtNascimento, boolean sexo, String nameUser,
+	public Funcionario(Integer id, String nome, LocalDate dtNascimento, boolean sexo, String nameUser,
 			Integer tipoFunc, String conselho, String cdConselho) {
 		super();
 		this.id = id;
@@ -47,11 +70,11 @@ public class Funcionario implements Serializable {
 		this.nome = nome;
 	}
 
-	public Data getDtNascimento() {
+	public LocalDate getDtNascimento() {
 		return dtNascimento;
 	}
 
-	public void setDtNascimento(Data dtNascimento) {
+	public void setDtNascimento(LocalDate dtNascimento) {
 		this.dtNascimento = dtNascimento;
 	}
 
