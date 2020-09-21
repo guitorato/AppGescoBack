@@ -33,6 +33,9 @@ public class Funcionario implements Serializable {
 	private String nameUser;
 	
 	@Column(nullable = false)
+	private String senha;
+	
+	@Column(nullable = false)
 	private Integer tipoFunc;
 	
 	
@@ -41,7 +44,7 @@ public class Funcionario implements Serializable {
 	
 	public Funcionario () {}
 
-	public Funcionario(Integer id, String nome, LocalDate dtNascimento, boolean sexo, String nameUser,
+	public Funcionario(Integer id, String nome, LocalDate dtNascimento, boolean sexo, String nameUser, String senha,
 			Integer tipoFunc, String conselho, String cdConselho) {
 		super();
 		this.id = id;
@@ -49,16 +52,19 @@ public class Funcionario implements Serializable {
 		this.dtNascimento = dtNascimento;
 		this.sexo = sexo;
 		this.nameUser = nameUser;
+		this.senha = senha;
 		this.tipoFunc = tipoFunc;
 		this.conselho = conselho;
 		this.cdConselho = cdConselho;
 	}
 
-	public Integer getIdHospital() {
+
+
+	public Integer getId() {
 		return id;
 	}
 
-	public void setIdHospital(Integer id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -92,6 +98,15 @@ public class Funcionario implements Serializable {
 
 	public void setNameUser(String nameUser) {
 		this.nameUser = nameUser;
+	}
+	
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 	public Integer getTipoFunc() {
