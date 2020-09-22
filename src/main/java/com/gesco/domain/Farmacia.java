@@ -2,7 +2,11 @@ package com.gesco.domain;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -15,9 +19,16 @@ import lombok.ToString;
 @Entity
 public class Farmacia {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@Column(nullable = false)
 	private String usuario;
+	
+	@Column(nullable = false)
 	private String senha;
+	
 	private List<Tratamento> tratamentos;
 	
 	public Farmacia() {}
