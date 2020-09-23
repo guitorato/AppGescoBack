@@ -7,8 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -21,7 +21,7 @@ public class Farmacia {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Integer idFarmacia;
 	
 	@Column(nullable = false)
 	private String usuario;
@@ -29,12 +29,12 @@ public class Farmacia {
 	@Column(nullable = false)
 	private String senha;
 	
+	@OneToMany(mappedBy="farmacia")
 	private List<Tratamento> tratamentos;
 	
 	public Farmacia() {}
-	public Farmacia(Integer id, String usuario, String senha, List<Tratamento> tratamentos) {
-		super();
-		this.id = id;
+	public Farmacia(Integer idFarmacia, String usuario, String senha, List<Tratamento> tratamentos) {
+		this.idFarmacia = idFarmacia;
 		this.usuario = usuario;
 		this.senha = senha;
 		this.tratamentos = tratamentos;
@@ -44,7 +44,7 @@ public class Farmacia {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((idFarmacia == null) ? 0 : idFarmacia.hashCode());
 		return result;
 	}
 	@Override
@@ -56,10 +56,10 @@ public class Farmacia {
 		if (getClass() != obj.getClass())
 			return false;
 		Farmacia other = (Farmacia) obj;
-		if (id == null) {
-			if (other.id != null)
+		if (idFarmacia == null) {
+			if (other.idFarmacia != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!idFarmacia.equals(other.idFarmacia))
 			return false;
 		return true;
 	}

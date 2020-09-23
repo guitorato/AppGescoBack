@@ -2,29 +2,26 @@ package com.gesco.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-public class Tratamento implements Serializable{
+public class Antibiotico implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -32,47 +29,46 @@ public class Tratamento implements Serializable{
 	private Integer id;
 	
 	@Column(nullable = false)
-	private String diagnostico;
+	private String nome;
+	
+	@Column(nullable = false)
+	private String lote;
 	
 	@Column(nullable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate inicio_tratamento;
+	private LocalDate validade;
 	
 	@Column(nullable = false)
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate fim_tratamento;
+	private Double dosagem;
 	
 	@Column(nullable = false)
-	private double doseDiario;
-	
-	@Column(nullable = false)
-	private String statusTratamento;
-	
-	@Column(nullable = false)
-	private String obs;
+	private String aplicacao;
 	
 	@ManyToOne
-	@JoinColumn(name="antibiotico_id") 
-	private Antibiotico antibiotico;
-	
-	@ManyToOne
-	@JoinColumn(name="farmacia_id") 
-	private Farmacia farmacia;
-	
-	@ManyToOne
-	@JoinColumn(name="funcionario_id") 
-	private Medico medico;
-	
-	@ManyToOne
+	@JoinColumn(name="funcionario_id")
 	private Farmaceutico farmaceutico;
 	
-	@ManyToOne
-	@JoinColumn(name="paciente_id") 
-	private Paciente paciente;
+	@OneToMany(mappedBy="antibiotico")
+	private List<Tratamento> tratamentos;
 
-	public Tratamento() {}
-	
-	
+	public Antibiotico() {}
+	public Antibiotico(Integer id, String nome, String lote, LocalDate validade, Double dosagem, String aplicacao,
+			Farmaceutico farmaceutico) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.lote = lote;
+		this.validade = validade;
+		this.dosagem = dosagem;
+		this.aplicacao = aplicacao;
+		this.farmaceutico = farmaceutico;
+		
+	}
+	@Override
+	public String toString() {
+		return "Antibiotico [id=" + id + ", nome=" + nome + ", lote=" + lote + ", validade=" + validade + ", dosagem="
+				+ dosagem + ", aplicacao=" + aplicacao + ", farmaceutico=" + farmaceutico + "]";
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -88,7 +84,7 @@ public class Tratamento implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Tratamento other = (Tratamento) obj;
+		Antibiotico other = (Antibiotico) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -99,6 +95,5 @@ public class Tratamento implements Serializable{
 	
 	
 	
-	
-	
+
 }
