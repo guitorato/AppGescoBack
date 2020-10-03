@@ -2,6 +2,7 @@ package com.gesco.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +15,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -34,12 +38,12 @@ public class Funcionario implements Serializable {
 	@Column(nullable = false)
 	private String nome;
 	
-	@Column(nullable = false)
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(nullable = false, columnDefinition = "DATE")
+	@DateTimeFormat(iso = ISO.DATE, pattern = "")
 	private LocalDate dtNascimento;
 	
 	@Column(nullable = false)
-	private boolean sexo;
+	private String sexo;
 	
 	@Column(nullable = false)
 	private String nameUser;
@@ -53,7 +57,7 @@ public class Funcionario implements Serializable {
 	
 	public Funcionario () {}
 	
-	public Funcionario(Integer idFuncionario, String nome, LocalDate dtNascimento, boolean sexo, String nameUser, String senha, Hospital hospital) {
+	public Funcionario(Integer idFuncionario, String nome, LocalDate dtNascimento, String sexo, String nameUser, String senha, Hospital hospital) {
 		super();
 		this.idFuncionario = idFuncionario;
 		this.nome = nome;

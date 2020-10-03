@@ -1,6 +1,7 @@
 package com.gesco.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -34,12 +35,11 @@ public class Hospital implements Serializable {
 	private String cidade;
 	
 	@OneToMany(mappedBy="hospital")
-	private List<Funcionario> funcionarios;
+	private List<Funcionario> funcionarios = new ArrayList<>();
 
 	public Hospital() {}
 	
-	public Hospital(Integer id, String nome, String endereco, String numero, String bairro, String cidade,
-			List<Funcionario> funcionarios) {
+	public Hospital(Integer id, String nome, String endereco, String numero, String bairro, String cidade) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -47,8 +47,9 @@ public class Hospital implements Serializable {
 		this.numero = numero;
 		this.bairro = bairro;
 		this.cidade = cidade;
-		this.funcionarios = funcionarios;
 	}
+
+
 
 	public Integer getId() {
 		return id;
