@@ -38,6 +38,7 @@ public class GescoApplication implements CommandLineRunner {
 		Funcionario func1 = new Funcionario(null, "Guilherme", LocalDate.now(), "M", "sdasd", "asdasd", hosp1);
 		Funcionario func2 = new Funcionario(null, "Matheus", LocalDate.now(), "M", "sdasd", "asdasd", hosp1);
 		funcionarioRepository.save(func1);
+		funcionarioRepository.save(func2);
 		
 	}
 	

@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.gesco.domain.Funcionario;
 import com.gesco.repositories.FuncionarioRepository;
+import com.gesco.services.exceptions.ObjectNotFoundException;
+
 
 @Service
 public class FuncionarioService {
@@ -16,7 +18,7 @@ public class FuncionarioService {
 	
 	public Funcionario find(Integer id) {
 		 Optional<Funcionario> obj = repo.findById(id);
-		 return obj.orElse(null); 
+		 return obj.orElseThrow(() -> new ObjectNotFoundException("Funcionário não encontrado!"));
 	}
 
 }

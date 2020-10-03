@@ -11,6 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Hospital implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -34,6 +37,7 @@ public class Hospital implements Serializable {
 	@Column(nullable = false)
 	private String cidade;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="hospital")
 	private List<Funcionario> funcionarios = new ArrayList<>();
 
