@@ -2,6 +2,8 @@ package com.gesco.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,11 +14,16 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -54,32 +61,34 @@ public class Tratamento implements Serializable{
 	@Column(nullable = false)
 	private String obs;
 	
-	@JsonIgnore
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="antibiotico_id") 
-	private Antibiotico antibiotico;
+	@ManyToMany
+	@JsonManagedReference
+	 @JoinTable(name = "TRATAMENTO_ANTIBIOTICO",
+	 joinColumns = @JoinColumn(name = "tratamento_id"),
+	 inverseJoinColumns = @JoinColumn(name = "antibiotico_id"))
+	private List<Antibiotico> antibioticos = new ArrayList<>();
 
 	
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="funcionario_id") 
+	@JoinColumn(name="medico_id") 
 	private Funcionario funcionario;
-	
-	@JsonIgnore
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="farmacia_id") 
-	private Farmacia farmacia;
 	
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="paciente_id") 
 	private Paciente paciente;
 
-	public Tratamento() {}
+	@JsonInclude
+	@Transient
+	private String nm_medico;
 	
+	
+	public Tratamento() {}
+		
+
 	public Tratamento(Integer id, String diagnostico, LocalDate inicio_tratamento, LocalDate fim_tratamento,
-			double doseDiario, String statusTratamento, String obs, Antibiotico antibiotico, Funcionario funcionario,
-			Paciente paciente) {
+			double doseDiario, String statusTratamento, String obs, Funcionario funcionario, Paciente paciente) {
 		super();
 		this.id = id;
 		this.diagnostico = diagnostico;
@@ -88,9 +97,20 @@ public class Tratamento implements Serializable{
 		this.doseDiario = doseDiario;
 		this.statusTratamento = statusTratamento;
 		this.obs = obs;
-		this.antibiotico = antibiotico;
 		this.funcionario = funcionario;
 		this.paciente = paciente;
+	}
+
+
+
+
+	public String getNm_medico() {
+		return funcionario.getNome();
+	}
+
+
+	public void setNm_medico(String nm_medico) {
+		this.nm_medico = funcionario.getNome();
 	}
 
 
@@ -150,12 +170,12 @@ public class Tratamento implements Serializable{
 		this.obs = obs;
 	}
 
-	public Antibiotico getAntibiotico() {
-		return antibiotico;
+	public List<Antibiotico> getAntibioticos() {
+		return antibioticos;
 	}
 
-	public void setAntibiotico(Antibiotico antibiotico) {
-		this.antibiotico = antibiotico;
+	public void setAntibioticos(List<Antibiotico> antibioticos) {
+		this.antibioticos = antibioticos;
 	}
 
 	public Funcionario getFuncionario() {
@@ -164,14 +184,6 @@ public class Tratamento implements Serializable{
 
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
-	}
-
-	public Farmacia getFarmacia() {
-		return farmacia;
-	}
-
-	public void setFarmacia(Farmacia farmacia) {
-		this.farmacia = farmacia;
 	}
 
 	public Paciente getPaciente() {
@@ -209,6 +221,17 @@ public class Tratamento implements Serializable{
 			return false;
 		return true;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Tratamento [\nid=" + id + ",\n diagnostico=" + diagnostico + ",\n inicio_tratamento=" + inicio_tratamento
+				+ ", \nfim_tratamento=" + fim_tratamento + ",\n doseDiario=" + doseDiario + ", \nstatusTratamento="
+				+ statusTratamento + ",\n obs=" + obs + ",\n antibioticos=" + antibioticos + ",\n funcionario=" + funcionario
+				+ ",\n paciente=" + paciente + "]";
+	}
+	
+	
 	
 	
 	

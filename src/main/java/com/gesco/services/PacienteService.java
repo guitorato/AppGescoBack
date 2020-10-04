@@ -5,11 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.gesco.domain.Antibiotico;
-import com.gesco.domain.Funcionario;
 import com.gesco.domain.Paciente;
-import com.gesco.repositories.AntibioticoRepository;
-import com.gesco.repositories.FuncionarioRepository;
 import com.gesco.repositories.PacienteRepository;
 import com.gesco.services.exceptions.ObjectNotFoundException;
 

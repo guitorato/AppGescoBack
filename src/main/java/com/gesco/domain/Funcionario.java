@@ -73,7 +73,7 @@ public class Funcionario implements Serializable {
 	@Transient
 	private String nm_hospital;
 	
-	@JsonIgnore 
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "funcionario", fetch = FetchType.EAGER)
 	@Fetch(org.hibernate.annotations.FetchMode.SUBSELECT)
 	private List<Tratamento> tratamentos = new ArrayList<>();

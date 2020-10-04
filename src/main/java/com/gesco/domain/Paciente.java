@@ -15,7 +15,9 @@ import javax.persistence.OneToMany;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -44,7 +46,7 @@ public class Paciente implements Serializable {
 	@Column(nullable = false)
 	private String sexo;
 	
-	@JsonIgnore
+	@JsonBackReference
 	@OneToMany(mappedBy="paciente")
 	private List<Tratamento> tratamentos;
 	

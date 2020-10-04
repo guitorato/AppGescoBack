@@ -2,6 +2,7 @@ package com.gesco.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,12 +13,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -52,16 +55,16 @@ public class Antibiotico implements Serializable {
 	
 	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name="funcionario_id")
+	@JoinColumn(name="farmaceutico_id")
 	private Funcionario funcionario;
 	
 	@JsonInclude
 	@Transient
-	private String nm_funcionario;
+	private String nm_farmaceutico;
 	
-	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "antibiotico", fetch = FetchType.EAGER)
-	private List<Tratamento> tratamentos;
+	@JsonBackReference
+	@ManyToMany(mappedBy = "antibioticos")
+	private List<Tratamento> tratamentos = new ArrayList<>();
 	
 	public Antibiotico() {}
 	
@@ -85,7 +88,7 @@ public class Antibiotico implements Serializable {
 
 
 	public void setNm_funcionario(String func) {
-		this.nm_funcionario = funcionario.getNome();
+		this.nm_farmaceutico = funcionario.getNome();
 	}
 
 
