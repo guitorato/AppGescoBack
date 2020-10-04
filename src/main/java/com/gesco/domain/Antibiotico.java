@@ -57,7 +57,7 @@ public class Antibiotico implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="farmaceutico_id")
 	private Funcionario funcionario;
-	
+		
 	@JsonInclude
 	@Transient
 	private String nm_farmaceutico;
