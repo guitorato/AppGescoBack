@@ -2,8 +2,10 @@ package com.gesco.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,7 +31,7 @@ public class Farmacia {
 	@Column(nullable = false)
 	private String senha;
 	
-	@OneToMany(mappedBy="farmacia")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "farmacia", fetch = FetchType.EAGER)
 	private List<Tratamento> tratamentos;
 	
 	public Farmacia() {}
@@ -40,6 +42,30 @@ public class Farmacia {
 		this.tratamentos = tratamentos;
 	}
 	
+	public Integer getIdFarmacia() {
+		return idFarmacia;
+	}
+	public void setIdFarmacia(Integer idFarmacia) {
+		this.idFarmacia = idFarmacia;
+	}
+	public String getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+	public String getSenha() {
+		return senha;
+	}
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+	public List<Tratamento> getTratamentos() {
+		return tratamentos;
+	}
+	public void setTratamentos(List<Tratamento> tratamentos) {
+		this.tratamentos = tratamentos;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;

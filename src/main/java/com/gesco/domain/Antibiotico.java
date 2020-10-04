@@ -4,16 +4,22 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -44,16 +50,24 @@ public class Antibiotico implements Serializable {
 	@Column(nullable = false)
 	private String aplicacao;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="funcionario_id")
-	private Farmaceutico farmaceutico;
+	private Funcionario funcionario;
 	
-	@OneToMany(mappedBy="antibiotico")
+	@JsonInclude
+	@Transient
+	private String nm_funcionario;
+	
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "antibiotico", fetch = FetchType.EAGER)
 	private List<Tratamento> tratamentos;
-
+	
 	public Antibiotico() {}
+	
+	
 	public Antibiotico(Integer id, String nome, String lote, LocalDate validade, Double dosagem, String aplicacao,
-			Farmaceutico farmaceutico) {
+			Funcionario funcionario) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -61,13 +75,70 @@ public class Antibiotico implements Serializable {
 		this.validade = validade;
 		this.dosagem = dosagem;
 		this.aplicacao = aplicacao;
-		this.farmaceutico = farmaceutico;
-		
+		this.funcionario = funcionario;
 	}
-	@Override
-	public String toString() {
-		return "Antibiotico [id=" + id + ", nome=" + nome + ", lote=" + lote + ", validade=" + validade + ", dosagem="
-				+ dosagem + ", aplicacao=" + aplicacao + ", farmaceutico=" + farmaceutico + "]";
+
+	
+	public String getNm_funcionario() {
+		return funcionario.getNome();
+	}
+
+
+	public void setNm_funcionario(String func) {
+		this.nm_funcionario = funcionario.getNome();
+	}
+
+
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public String getLote() {
+		return lote;
+	}
+	public void setLote(String lote) {
+		this.lote = lote;
+	}
+	public LocalDate getValidade() {
+		return validade;
+	}
+	public void setValidade(LocalDate validade) {
+		this.validade = validade;
+	}
+	public Double getDosagem() {
+		return dosagem;
+	}
+	public void setDosagem(Double dosagem) {
+		this.dosagem = dosagem;
+	}
+	public String getAplicacao() {
+		return aplicacao;
+	}
+	public void setAplicacao(String aplicacao) {
+		this.aplicacao = aplicacao;
+	}
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
+	}
+	public List<Tratamento> getTratamentos() {
+		return tratamentos;
+	}
+	public void setTratamentos(List<Tratamento> tratamentos) {
+		this.tratamentos = tratamentos;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	@Override
 	public int hashCode() {

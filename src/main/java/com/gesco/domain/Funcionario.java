@@ -2,8 +2,10 @@ package com.gesco.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,13 +16,19 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
+import org.hibernate.annotations.Fetch;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.gesco.domain.enums.TipoFuncionario;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -51,14 +59,34 @@ public class Funcionario implements Serializable {
 	@Column(nullable = false)
 	private String senha;
 	
+	private String crmOuCrf;
+	
+	@Column(nullable = false)
+	private Integer tipoFuncionario;
+	
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="hospital_id") 
 	private Hospital hospital;
 	
-	public Funcionario () {}
+	@JsonInclude
+	@Transient
+	private String nm_hospital;
 	
-	public Funcionario(Integer idFuncionario, String nome, LocalDate dtNascimento, String sexo, String nameUser, String senha, Hospital hospital) {
+	@JsonIgnore 
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "funcionario", fetch = FetchType.EAGER)
+	@Fetch(org.hibernate.annotations.FetchMode.SUBSELECT)
+	private List<Tratamento> tratamentos = new ArrayList<>();
+	
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "funcionario", fetch = FetchType.EAGER)
+	@Fetch(org.hibernate.annotations.FetchMode.SUBSELECT)
+	private List<Antibiotico> antibioticos = new ArrayList<>();
+	
+	public Funcionario() {}
+
+	public Funcionario(Integer idFuncionario, String nome, LocalDate dtNascimento, String sexo, String nameUser,
+			String senha, String crmOuCrf, TipoFuncionario tipoFuncionario, Hospital hospital) {
 		super();
 		this.idFuncionario = idFuncionario;
 		this.nome = nome;
@@ -66,10 +94,20 @@ public class Funcionario implements Serializable {
 		this.sexo = sexo;
 		this.nameUser = nameUser;
 		this.senha = senha;
+		this.crmOuCrf = crmOuCrf;
+		this.tipoFuncionario = tipoFuncionario.getCod();
 		this.hospital = hospital;
 	}
-	
-	
+
+
+	public String getNm_hospital() {
+		return hospital.getNome();
+	}
+
+	public void setNm_hospital(String nm_hospital) {
+		this.nm_hospital = hospital.getNome();
+	}
+
 	public Integer getIdFuncionario() {
 		return idFuncionario;
 	}
@@ -118,6 +156,22 @@ public class Funcionario implements Serializable {
 		this.senha = senha;
 	}
 
+	public String getCrmOuCrf() {
+		return crmOuCrf;
+	}
+
+	public void setCrmOuCrf(String crmOuCrf) {
+		this.crmOuCrf = crmOuCrf;
+	}
+
+	public TipoFuncionario getTipoFuncionario() {
+		return TipoFuncionario.toEnum(tipoFuncionario);
+	}
+
+	public void setTipoFuncionario(TipoFuncionario tipoFuncionario) {
+		this.tipoFuncionario = tipoFuncionario.getCod();
+	}
+
 	public Hospital getHospital() {
 		return hospital;
 	}
@@ -126,9 +180,26 @@ public class Funcionario implements Serializable {
 		this.hospital = hospital;
 	}
 
+	public List<Tratamento> getTratamentos() {
+		return tratamentos;
+	}
+
+	public void setTratamentos(List<Tratamento> tratamentos) {
+		this.tratamentos = tratamentos;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	public List<Antibiotico> getAntibioticos() {
+		return antibioticos;
+	}
+
+	public void setAntibioticos(List<Antibiotico> antibioticos) {
+		this.antibioticos = antibioticos;
+	}
+	
 
 	@Override
 	public int hashCode() {
