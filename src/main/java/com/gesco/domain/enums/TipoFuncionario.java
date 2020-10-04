@@ -4,7 +4,9 @@ public enum TipoFuncionario {
 
 	MEDICO(1,"MÉDICO"),
 	FARMACEUTICO(2,"Farmacêutico"),
-	INTERNACAO(3,"Internação");
+	INTERNACAO(3,"Internação"),
+	FARMACIA(4,"Farmácia"),
+	ADMINISTRADOR(5,"Administrador");
 	
 	private int cod;
 	private String descricao;
