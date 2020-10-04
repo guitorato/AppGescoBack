@@ -17,10 +17,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.gesco.domain.Antibiotico;
 import com.gesco.domain.Funcionario;
 import com.gesco.domain.Hospital;
+import com.gesco.domain.Paciente;
 import com.gesco.domain.enums.TipoFuncionario;
 import com.gesco.repositories.AntibioticoRepository;
 import com.gesco.repositories.FuncionarioRepository;
 import com.gesco.repositories.HospitalRepository;
+import com.gesco.repositories.PacienteRepository;
 
 @SpringBootApplication
 public class GescoApplication implements CommandLineRunner {
@@ -32,6 +34,9 @@ public class GescoApplication implements CommandLineRunner {
 	
 	@Autowired
 	private AntibioticoRepository antibioticoRepository;
+	
+	@Autowired
+	private PacienteRepository pacienteRepository;
 	
 	
 	public static void main(String[] args) {
@@ -57,6 +62,11 @@ public class GescoApplication implements CommandLineRunner {
 		Antibiotico atb2 = new Antibiotico(null, "Cefalotina","AL4521-1", LocalDate.now(), 1.0 , "EV", func2);
 		
 		antibioticoRepository.saveAll(Arrays.asList(atb1,atb2));
+		
+		Paciente pc1 = new Paciente(null, 455455, "Carlos Eduardo", LocalDate.now(), "Masculino");
+		Paciente pc2 = new Paciente(null, 475455, "Ângelo", LocalDate.now(), "Outros");
+		
+		pacienteRepository.saveAll(Arrays.asList(pc1,pc2));
 	}
 	
 	
