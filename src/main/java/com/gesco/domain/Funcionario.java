@@ -59,6 +59,7 @@ public class Funcionario implements Serializable {
 	@Column(nullable = false)
 	private String senha;
 	
+	@Column(nullable = true , name = "cd_conselho")
 	private String crmOuCrf;
 	
 	@Column(nullable = false)
