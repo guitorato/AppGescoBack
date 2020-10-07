@@ -31,4 +31,9 @@ public class FuncionarioService {
 		find(obj.getIdFuncionario());
 		return repo.save(obj);
 	}
+	
+	public void delete (Integer id) {
+		find(id);
+		repo.deleteById(id);
+	}
 }

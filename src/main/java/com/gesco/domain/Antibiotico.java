@@ -53,16 +53,12 @@ public class Antibiotico implements Serializable {
 	@Column(nullable = false)
 	private String aplicacao;
 	
-	@JsonIgnore
+	
 	@ManyToOne
 	@JoinColumn(name="farmaceutico_id")
 	private Funcionario funcionario;
-		
-	@JsonInclude
-	@Transient
-	private String nm_farmaceutico;
 	
-	@JsonBackReference
+	@JsonIgnore
 	@ManyToMany(mappedBy = "antibioticos")
 	private List<Tratamento> tratamentos = new ArrayList<>();
 	
@@ -82,16 +78,6 @@ public class Antibiotico implements Serializable {
 	}
 
 	
-	public String getNm_funcionario() {
-		return funcionario.getNome();
-	}
-
-
-	public void setNm_funcionario(String func) {
-		this.nm_farmaceutico = funcionario.getNome();
-	}
-
-
 	public Integer getId() {
 		return id;
 	}

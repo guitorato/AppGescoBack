@@ -62,7 +62,6 @@ public class Tratamento implements Serializable{
 	private String obs;
 	
 	@ManyToMany
-	@JsonManagedReference
 	 @JoinTable(name = "TRATAMENTO_ANTIBIOTICO",
 	 joinColumns = @JoinColumn(name = "tratamento_id"),
 	 inverseJoinColumns = @JoinColumn(name = "antibiotico_id"))
