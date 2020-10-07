@@ -27,5 +27,10 @@ public class HospitalService {
 		obj.setId(null);
 		return repo.save(obj);
 	}
+	
+	public Hospital update (Hospital obj) {
+		find(obj.getId());
+		return repo.save(obj);
+	}
 
 }
