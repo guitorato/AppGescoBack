@@ -25,7 +25,7 @@ public class HospitalResource {
 	
 	
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> findId(@PathVariable Integer id){
+	public ResponseEntity<Hospital> findId(@PathVariable Integer id){
 		
 		Hospital obj = service.find(id);
 		

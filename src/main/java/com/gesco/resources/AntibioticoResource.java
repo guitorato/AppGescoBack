@@ -24,7 +24,7 @@ public class AntibioticoResource {
 	
 	
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> findId(@PathVariable Integer id){
+	public ResponseEntity<Antibiotico> findId(@PathVariable Integer id){
 		
 		Antibiotico obj = service.find(id);
 		

@@ -22,5 +22,15 @@ public class AntibioticoService {
 		 Optional<Antibiotico> obj = repo.findById(id);
 		 return obj.orElseThrow(() -> new ObjectNotFoundException("Antibiótico não encontrado!"));
 	}
+	
+	public Antibiotico insert(Antibiotico obj) {
+		obj.setId(null);
+		return repo.save(obj);
+	}
+	
+	public Antibiotico update (Antibiotico obj) {
+		find(obj.getId());
+		return repo.save(obj);
+	}
 
 }

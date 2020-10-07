@@ -22,5 +22,15 @@ public class TratamentoService {
 		 Optional<Tratamento> obj = repo.findById(id);
 		 return obj.orElseThrow(() -> new ObjectNotFoundException("Tratamento não encontrado!"));
 	}
+	
+	public Tratamento insert(Tratamento obj) {
+		obj.setId(null);
+		return repo.save(obj);
+	}
+	
+	public Tratamento update (Tratamento obj) {
+		find(obj.getId());
+		return repo.save(obj);
+	}
 
 }
