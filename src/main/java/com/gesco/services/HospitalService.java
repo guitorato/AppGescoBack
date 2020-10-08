@@ -3,12 +3,14 @@ package com.gesco.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.gesco.domain.Funcionario;
 import com.gesco.domain.Hospital;
 import com.gesco.repositories.FuncionarioRepository;
 import com.gesco.repositories.HospitalRepository;
+import com.gesco.services.exceptions.DataIntegrityException;
 import com.gesco.services.exceptions.ObjectNotFoundException;
 
 
@@ -35,7 +37,12 @@ public class HospitalService {
 	
 	public void delete (Integer id) {
 		find(id);
-		repo.deleteById(id);
+		try {
+			
+			repo.deleteById(id);
+		}catch (DataIntegrityViolationException e) {
+			throw new DataIntegrityException("Não é possível excluir");
+		}
 	}
 
 }
