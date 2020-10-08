@@ -11,6 +11,8 @@
 	<groupId>com.gesco</groupId>
 	<artifactId>gesco</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	
 	<name>gesco</name>
 	<description>Back-end Gesco</description>
 
