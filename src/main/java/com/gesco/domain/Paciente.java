@@ -25,7 +25,6 @@ import lombok.ToString;
 
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 public class Paciente implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -46,7 +45,7 @@ public class Paciente implements Serializable {
 	@Column(nullable = false)
 	private String sexo;
 	
-	@JsonBackReference
+	@JsonIgnore
 	@OneToMany(mappedBy="paciente")
 	private List<Tratamento> tratamentos;
 	

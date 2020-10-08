@@ -61,6 +61,7 @@ public class Tratamento implements Serializable{
 	@Column(nullable = false)
 	private String obs;
 	
+	
 	@ManyToMany
 	 @JoinTable(name = "TRATAMENTO_ANTIBIOTICO",
 	 joinColumns = @JoinColumn(name = "tratamento_id"),
@@ -68,19 +69,15 @@ public class Tratamento implements Serializable{
 	private List<Antibiotico> antibioticos = new ArrayList<>();
 
 	
-	@JsonIgnore
-	@ManyToOne(fetch = FetchType.LAZY)
+	
+	@ManyToOne
 	@JoinColumn(name="medico_id") 
 	private Funcionario funcionario;
 	
-	@JsonIgnore
+	
 	@ManyToOne
 	@JoinColumn(name="paciente_id") 
 	private Paciente paciente;
-
-	@JsonInclude
-	@Transient
-	private String nm_medico;
 	
 	
 	public Tratamento() {}
@@ -101,16 +98,6 @@ public class Tratamento implements Serializable{
 	}
 
 
-
-
-	public String getNm_medico() {
-		return funcionario.getNome();
-	}
-
-
-	public void setNm_medico(String nm_medico) {
-		this.nm_medico = funcionario.getNome();
-	}
 
 
 	public Integer getId() {

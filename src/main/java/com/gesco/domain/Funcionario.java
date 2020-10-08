@@ -65,14 +65,11 @@ public class Funcionario implements Serializable {
 	@Column(nullable = false)
 	private Integer tipoFuncionario;
 	
-	@JsonIgnore
-	@ManyToOne(fetch = FetchType.LAZY)
+	
+	@ManyToOne
 	@JoinColumn(name="hospital_id") 
 	private Hospital hospital;
 	
-	@JsonInclude
-	@Transient
-	private String nm_hospital;
 	
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "funcionario", fetch = FetchType.EAGER)
@@ -101,13 +98,6 @@ public class Funcionario implements Serializable {
 	}
 
 
-	public String getNm_hospital() {
-		return hospital.getNome();
-	}
-
-	public void setNm_hospital(String nm_hospital) {
-		this.nm_hospital = hospital.getNome();
-	}
 
 	public Integer getIdFuncionario() {
 		return idFuncionario;
