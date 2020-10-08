@@ -1,5 +1,6 @@
 package com.gesco.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,10 @@ public class AntibioticoService {
 		}catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityException("Não é possível excluir");
 		}
+	}
+	
+	public List<Antibiotico> findAll(){
+		return repo.findAll();
 	}
 
 }

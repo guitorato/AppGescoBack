@@ -2,6 +2,8 @@ package com.gesco.resources;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.gesco.domain.Antibiotico;
 import com.gesco.domain.Funcionario;
+import com.gesco.dto.AntibioticoDTO;
 import com.gesco.services.AntibioticoService;
 import com.gesco.services.FuncionarioService;
 
@@ -23,7 +26,6 @@ public class AntibioticoResource {
 	
 	@Autowired
 	private AntibioticoService service;
-	
 	
 	
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
@@ -55,4 +57,13 @@ public class AntibioticoResource {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
+	
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<List<AntibioticoDTO>> findAll(){
+		
+		List<Antibiotico> list = service.findAll();
+		List<AntibioticoDTO> listDto = list.stream().map(obj -> new AntibioticoDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDto);
+	}
+	
 }

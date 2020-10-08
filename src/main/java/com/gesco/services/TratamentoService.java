@@ -1,11 +1,13 @@
 package com.gesco.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import com.gesco.domain.Antibiotico;
 import com.gesco.domain.Paciente;
 import com.gesco.domain.Tratamento;
 import com.gesco.repositories.PacienteRepository;
@@ -43,6 +45,10 @@ public class TratamentoService {
 		}catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityException("Não é possível excluir");
 		}
+	}
+	
+	public List<Tratamento> findAll(){
+		return repo.findAll();
 	}
 
 }

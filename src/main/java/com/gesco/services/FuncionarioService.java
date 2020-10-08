@@ -1,11 +1,13 @@
 package com.gesco.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import com.gesco.domain.Antibiotico;
 import com.gesco.domain.Funcionario;
 import com.gesco.domain.Hospital;
 import com.gesco.repositories.FuncionarioRepository;
@@ -42,5 +44,9 @@ public class FuncionarioService {
 		}catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityException("Não é possível excluir");
 		}
+	}
+	
+	public List<Funcionario> findAll(){
+		return repo.findAll();
 	}
 }

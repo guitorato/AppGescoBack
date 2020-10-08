@@ -2,6 +2,7 @@ package com.gesco.resources;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,8 @@ import com.gesco.domain.Antibiotico;
 import com.gesco.domain.Funcionario;
 import com.gesco.domain.Paciente;
 import com.gesco.domain.Tratamento;
+import com.gesco.dto.FuncionarioDTO;
+import com.gesco.dto.TratamentoDTO;
 import com.gesco.services.AntibioticoService;
 import com.gesco.services.FuncionarioService;
 import com.gesco.services.PacienteService;
@@ -58,5 +61,13 @@ public class TratamentoResource {
 		
 		service.delete(id);
 		return ResponseEntity.noContent().build();
+	}
+	
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<List<TratamentoDTO>> findAll(){
+		
+		List<Tratamento> list = service.findAll();
+		List<TratamentoDTO> listDto = list.stream().map(obj -> new TratamentoDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDto);
 	}
 }

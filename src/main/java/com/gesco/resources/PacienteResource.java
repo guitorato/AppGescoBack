@@ -57,4 +57,12 @@ public class PacienteResource {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
+	
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<List<Paciente>> findAll(){
+		
+		List<Paciente> list = service.findAll();
+		
+		return ResponseEntity.ok().body(list);
+	}
 }
