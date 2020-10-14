@@ -37,6 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			"/pacientes/**",
 			"/funcionarios/**",
 			"/tratamentos/**",
+			"/antibioticos/**",
 			"/hospital/**"
 			
 	};
@@ -45,6 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			"/pacientes/**",
 			"/funcionarios/**",
 			"/tratamentos/**",
+			"/antibioticos/**",
 			"/hospital/**"
 	};
 	
