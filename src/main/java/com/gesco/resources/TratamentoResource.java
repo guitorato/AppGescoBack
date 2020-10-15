@@ -15,15 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.gesco.domain.Antibiotico;
-import com.gesco.domain.Funcionario;
-import com.gesco.domain.Paciente;
 import com.gesco.domain.Tratamento;
-import com.gesco.dto.FuncionarioDTO;
 import com.gesco.dto.TratamentoDTO;
-import com.gesco.services.AntibioticoService;
-import com.gesco.services.FuncionarioService;
-import com.gesco.services.PacienteService;
 import com.gesco.services.TratamentoService;
 
 @RestController
@@ -77,7 +70,7 @@ public class TratamentoResource {
 	public ResponseEntity<Page<TratamentoDTO>> findPage(
 			@RequestParam(value = "page", defaultValue = "0") Integer page, 
 			@RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage, 
-			@RequestParam(value = "orderBy", defaultValue = "nome") String orderBy, 
+			@RequestParam(value = "orderBy", defaultValue = "id") String orderBy, 
 			@RequestParam(value = "direction", defaultValue = "ASC") String direction){
 		
 		Page<Tratamento> list = service.findPage(page,linesPerPage,orderBy,direction);

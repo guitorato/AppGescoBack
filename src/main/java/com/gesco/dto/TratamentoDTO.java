@@ -2,6 +2,7 @@ package com.gesco.dto;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.gesco.domain.Antibiotico;
@@ -18,12 +19,12 @@ public class TratamentoDTO implements Serializable {
 	private LocalDate fim_tratamento;
 	private double doseDiario;
 	private String statusTratamento;
-	private String obs;
-	private List<Antibiotico> antibioticos;
 	private String medico;
+	private String obs;
+	private List<Antibiotico> antibioticos = new ArrayList<>();
 	
 	public TratamentoDTO () {}
-	public TratamentoDTO (Tratamento obj) {
+	public TratamentoDTO (Tratamento obj ) {
 		id = obj.getId();
 		nm_paciente = obj.getPaciente().getNome();
 		diagnostico = obj.getDiagnostico();
