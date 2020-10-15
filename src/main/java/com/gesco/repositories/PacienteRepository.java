@@ -11,7 +11,6 @@ import com.gesco.domain.Paciente;
 @Repository
 public interface PacienteRepository extends JpaRepository<Paciente, Integer> {
 
-	public Paciente findAllName(String nome);
 	
 	
 
