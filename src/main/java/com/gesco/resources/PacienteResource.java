@@ -3,6 +3,8 @@ package com.gesco.resources;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -39,7 +41,7 @@ public class PacienteResource {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insert(@RequestBody Paciente obj){
+	public ResponseEntity<Void> insert(@Valid @RequestBody Paciente obj){
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").build(obj.getId());
@@ -47,7 +49,7 @@ public class PacienteResource {
 	}
 	
 	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> update(@RequestBody Paciente obj , @PathVariable Integer id){
+	public ResponseEntity<Void> update(@Valid @RequestBody Paciente obj , @PathVariable Integer id){
 		obj.setId(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
@@ -79,4 +81,5 @@ public class PacienteResource {
 		
 		return ResponseEntity.ok().body(list);
 	}
+	
 }

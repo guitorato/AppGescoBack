@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotEmpty;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -36,6 +37,7 @@ public class Paciente implements Serializable {
 	private int cd_paciente;
 	
 	@Column(nullable = false)
+	@NotEmpty(message = "Preenchimento do Nome do Paciente Obrigatório")
 	private String nome;
 	
 	@Column(nullable = false)
@@ -43,6 +45,7 @@ public class Paciente implements Serializable {
 	private LocalDate dtNascimento;
 	
 	@Column(nullable = false)
+	@NotEmpty(message = "Informe o sexo do Paciente")
 	private String sexo;
 	
 	@JsonIgnore

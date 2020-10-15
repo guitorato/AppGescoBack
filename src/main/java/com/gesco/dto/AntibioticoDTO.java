@@ -3,6 +3,7 @@ package com.gesco.dto;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+
 import com.gesco.domain.Antibiotico;
 
 
@@ -10,6 +11,7 @@ public class AntibioticoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
+	
 	private String nome;
 	private String lote;
 	private LocalDate validade;
