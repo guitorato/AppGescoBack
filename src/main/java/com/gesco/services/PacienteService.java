@@ -3,11 +3,14 @@ package com.gesco.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import com.gesco.domain.Antibiotico;
+
 import com.gesco.domain.Paciente;
 import com.gesco.repositories.PacienteRepository;
 import com.gesco.services.exceptions.DataIntegrityException;
@@ -47,6 +50,11 @@ public class PacienteService {
 	
 	public List<Paciente> findAll(){
 		return repo.findAll();
+	}
+	
+	public Page<Paciente> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
+		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
+		return repo.findAll(pageRequest);
 	}
 
 }
