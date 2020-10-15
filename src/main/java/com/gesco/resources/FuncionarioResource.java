@@ -82,4 +82,5 @@ public class FuncionarioResource {
 		Page<FuncionarioDTO> listDto = list.map(obj -> new FuncionarioDTO(obj));
 		
 		return ResponseEntity.ok().body(listDto);
+	}
 }
