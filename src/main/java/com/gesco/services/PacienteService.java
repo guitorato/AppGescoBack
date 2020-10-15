@@ -23,6 +23,8 @@ public class PacienteService {
 	@Autowired
 	private PacienteRepository repo;
 	
+	private Paciente paciente;
+	
 	public Paciente find(Integer id) {
 		 Optional<Paciente> obj = repo.findById(id);
 		 return obj.orElseThrow(() -> new ObjectNotFoundException("Paciente não encontrado!"));
@@ -57,6 +59,16 @@ public class PacienteService {
 		
 
 		return repo.findAll(pageRequest);
+	}
+	
+	public List<Paciente>findByNome(String nome) {
+		List<Paciente> obj = repo.findByNome(nome);
+		
+		if (obj == null) {
+			throw new ObjectNotFoundException(
+					"Objeto não encontrado! Id: " + paciente.getId() + ", Tipo: " + Paciente.class.getName());
+		}
+		return repo.findByNome(nome);
 	}
 	
 

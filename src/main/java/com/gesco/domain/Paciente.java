@@ -145,6 +145,8 @@ public class Paciente implements Serializable {
 		return "Paciente [id=" + id + ", cd_paciente=" + cd_paciente + ", nome=" + nome
 				+ ", dtNascimento=" + dtNascimento + ", sexo=" + sexo + ", tratamentos=" + tratamentos + "]";
 	}
+
+
 	
 	
 	

@@ -82,4 +82,10 @@ public class PacienteResource {
 		return ResponseEntity.ok().body(list);
 	}
 	
+	@RequestMapping(value="/nome", method=RequestMethod.GET)
+	public ResponseEntity<List<Paciente>> find(@RequestParam(value="value") String nome) {
+		List<Paciente> obj = service.findByNome(nome);
+		return ResponseEntity.ok().body(obj);
+	}
+	
 }
