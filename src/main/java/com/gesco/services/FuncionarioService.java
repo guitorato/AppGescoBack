@@ -5,11 +5,15 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.gesco.domain.Antibiotico;
 import com.gesco.domain.Funcionario;
 import com.gesco.domain.Hospital;
+import com.gesco.domain.Paciente;
 import com.gesco.repositories.FuncionarioRepository;
 import com.gesco.services.exceptions.DataIntegrityException;
 import com.gesco.services.exceptions.ObjectNotFoundException;
@@ -48,5 +52,12 @@ public class FuncionarioService {
 	
 	public List<Funcionario> findAll(){
 		return repo.findAll();
+	}
+	
+	public Page<Funcionario> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
+		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
+		
+
+		return repo.findAll(pageRequest);
 	}
 }
