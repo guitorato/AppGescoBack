@@ -56,10 +56,12 @@ public class DBService {
 		
 		antibioticoRepository.saveAll(Arrays.asList(atb1,atb2));
 		
-		Paciente pc1 = new Paciente(null, 455455, "Carlos Eduardo", LocalDate.now(), "Masculino");
-		Paciente pc2 = new Paciente(null, 475455, "Ângelo", LocalDate.now(), "Outros");
+		Paciente pc1 = new Paciente(null, (long) 455455, "Carlos Eduardo", LocalDate.now(), "Masculino");
+		Paciente pc2 = new Paciente(null, (long) 48967867, "Ângelo", LocalDate.now(), "Outros");
+		Paciente pc3 = new Paciente(null, (long) 478767, "Guilherme", LocalDate.now(), "Outros");
+		Paciente pc4 = new Paciente(null, (long) 456737, "Pedro", LocalDate.now(), "Outros");
 		
-		pacienteRepository.saveAll(Arrays.asList(pc1,pc2));
+		pacienteRepository.saveAll(Arrays.asList(pc1,pc2,pc3,pc4));
 		
 		Tratamento trat1 = new Tratamento(null, "Fimose", LocalDate.now(), LocalDate.now(), 2.5, "APROVADO", "Paciente Alérgico Cefalotina", medico, pc1);
 		Tratamento trat2 = new Tratamento(null, "Hemorroida", LocalDate.now(), LocalDate.now(), 2.5, "APROVADO", "Paciente Alérgico Ceftriaxona", medico, pc2);

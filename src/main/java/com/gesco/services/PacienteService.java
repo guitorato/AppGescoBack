@@ -71,5 +71,15 @@ public class PacienteService {
 		return repo.findByNome(nome);
 	}
 	
+	public List<Paciente> findRegistry(Long registry) {
+		List<Paciente> obj = repo.findByRegistry(registry);
+		
+		 if (obj == null) {
+				throw new ObjectNotFoundException(
+						"Objeto não encontrado! Id: " + paciente.getId() + ", Tipo: " + Paciente.class.getName());
+			}
+		 return repo.findByRegistry(registry);
+	}
+	
 
 }

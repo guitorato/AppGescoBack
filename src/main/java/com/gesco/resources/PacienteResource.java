@@ -1,7 +1,9 @@
 package com.gesco.resources;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -29,7 +31,6 @@ public class PacienteResource {
 	
 	@Autowired
 	private PacienteService service;
-	
 	
 	
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
@@ -83,8 +84,39 @@ public class PacienteResource {
 	}
 	
 	@RequestMapping(value="/nome", method=RequestMethod.GET)
-	public ResponseEntity<List<Paciente>> find(@RequestParam(value="value") String nome) {
+	public ResponseEntity<List<Paciente>> findName(@RequestParam(value="value") String nome) {
 		List<Paciente> obj = service.findByNome(nome);
+		return ResponseEntity.ok().body(obj);
+	}
+	
+	@RequestMapping(value="/registro", method=RequestMethod.GET)
+	public ResponseEntity<List<Paciente>> findRegistry(@RequestParam(value="value") Long registry) {
+		List<Paciente> obj = service.findRegistry(registry);
+		return ResponseEntity.ok().body(obj);
+	}
+	
+	
+	@RequestMapping(value="/buscar", method=RequestMethod.GET)
+	public ResponseEntity<List<Paciente>> findNameRegistry(
+			@RequestParam(value = "registro", required = false, defaultValue = "0") Long registry, 
+			@RequestParam(value = "nome", required = false, defaultValue = "") String nome ){
+		
+		List<Paciente> obj = new ArrayList<>();
+		
+		if(nome != null || nome != "") {
+			
+			obj = service.findByNome(nome);
+			System.out.println("TESTE1");
+			
+			
+			
+		}
+		if (registry.byteValue() != 0)  {
+			
+			obj = service.findRegistry(registry);
+			System.out.println("TESTE2");
+			
+		}
 		return ResponseEntity.ok().body(obj);
 	}
 	

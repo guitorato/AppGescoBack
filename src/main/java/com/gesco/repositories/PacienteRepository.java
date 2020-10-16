@@ -16,6 +16,9 @@ public interface PacienteRepository extends JpaRepository<Paciente, Integer> {
 	 @Transactional(readOnly=true)
 	 List<Paciente> findByNome(String nome);
 	 
+	 
+	 @Transactional(readOnly=true)
+	 List<Paciente> findByRegistry(Long registry);
 	
 
 }
