@@ -1,13 +1,16 @@
 package com.gesco.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.hibernate.mapping.Array;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.gesco.domain.Antibiotico;
@@ -20,6 +23,7 @@ import com.gesco.services.exceptions.DataIntegrityException;
 import com.gesco.services.exceptions.ObjectNotFoundException;
 
 
+
 @Service
 public class FuncionarioService {
 	
@@ -27,12 +31,28 @@ public class FuncionarioService {
 	private FuncionarioRepository repo;
 	
 	
+	
 	// -------- MÉTODO PROVISÓRIO DE LOGIN 
 	public Funcionario findLogin(String nameUser, String senha) {
-		 repo.findByNameUser(nameUser);
-		 Optional<Funcionario> obj = repo.findBySenha(senha);
+		
+		if (nameUser.equals("") && senha.equals("")) {
+			throw new ObjectNotFoundException(("Digita o Usuário e a Senha!"));
+			
+		}else if(nameUser.equals("")){
+			
+			throw new ObjectNotFoundException(("Digita o Usuário!"));
+			
+		}else if(senha.equals("")){
+			
+			throw new ObjectNotFoundException(("Digita a Senha!"));
+			
+		}
+			
+		Optional<Funcionario> obj = repo.findByNameUserAndSenha(nameUser, senha);
+
+		return obj.orElseThrow(() -> new ObjectNotFoundException("Usuário não encontrado!"));
 		 
-		 return obj.orElseThrow(() -> new ObjectNotFoundException("Usuário não encontrado!"));
+		
 	}
 	
 	// -------- MÉTODO PARA BUSCA POR FUNCIONÁRIO POR ID

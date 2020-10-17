@@ -88,19 +88,6 @@ public class PacienteResource {
 		return ResponseEntity.ok().body(list);
 	}
 	
-	// -------- MÉTODO PARA BUSCAR O NOME DO PACIENTE
-	@RequestMapping(value="/nome", method=RequestMethod.GET)
-	public ResponseEntity<List<Paciente>> findName(@RequestParam(value="value") String nome) {
-		List<Paciente> obj = service.findByNome(nome);
-		return ResponseEntity.ok().body(obj);
-	}
-	
-	// -------- MÉTODO PARA BUSCAR O REGISTRO DE ATENDIMENTO DO PACIENTE
-	@RequestMapping(value="/registro", method=RequestMethod.GET)
-	public ResponseEntity<List<Paciente>> findRegistry(@RequestParam(value="value") Long registry) {
-		List<Paciente> obj = service.findRegistry(registry);
-		return ResponseEntity.ok().body(obj);
-	}
 	
 	// -------- MÉTODO PARA BUSCAR O REGISTRO MAIS O NOME DO PACIENTE
 	@RequestMapping(value="/buscar", method=RequestMethod.GET)
@@ -108,20 +95,9 @@ public class PacienteResource {
 			@RequestParam(required = false, defaultValue = "0") Long registry, 
 			@RequestParam(required = false, defaultValue = "") String nome ){
 		
-		List<Paciente> obj = new ArrayList<>();
+		List<Paciente> obj = service.findNameRegistry(nome, registry);
 		
-		if(nome != null || nome != "") {
-			
-			obj = service.findByNome(nome);
-			
-			
-			
-		}
-		if (registry.byteValue() != 0)  {
-			
-			obj = service.findRegistry(registry);
-			
-		}
+
 		return ResponseEntity.ok().body(obj);
 	}
 	

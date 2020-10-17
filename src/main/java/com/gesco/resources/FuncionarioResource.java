@@ -35,13 +35,16 @@ public class FuncionarioResource {
 	
 	// -------- GET PROVISÓRIO PARA LOGIN
 	@RequestMapping(value="/login", method = RequestMethod.GET)
-	public ResponseEntity<Funcionario> findLogin(
+	public ResponseEntity<UserDTO> findLogin(
 			@RequestParam(value = "user", defaultValue = "") String user, 
 			@RequestParam(value = "pass", defaultValue = "") String pass){
 		
+		
 		Funcionario obj = service.findLogin(user, pass);
 		
-		return ResponseEntity.ok().body(obj);
+		UserDTO objDTO = new UserDTO(obj);
+		
+		return ResponseEntity.ok().body(objDTO);
 	}
 	
 	

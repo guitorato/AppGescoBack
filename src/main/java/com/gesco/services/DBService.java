@@ -40,9 +40,9 @@ public class DBService {
 		Hospital hosp1 = new Hospital(null, "SPDM", "Rua bla bla", "5457", "Ocian", "Praia Grande-SP");
 		
 		
-		Funcionario farmaceutico = new Funcionario(null, "Guilherme", LocalDate.now(), "M", "sdasd", "asdasd","4525" ,TipoFuncionario.FARMACEUTICO, hosp1);
-		Funcionario medico = new Funcionario(null, "Matheus", LocalDate.now(), "M", "sdasd", "3423", "54878", TipoFuncionario.MEDICO, hosp1);
-		Funcionario internacao = new Funcionario(null, "Daulo", LocalDate.now(), "M", "sdasd", "asdfad", null, TipoFuncionario.INTERNACAO, hosp1);
+		Funcionario farmaceutico = new Funcionario(null, "Guilherme", LocalDate.now(), "M", "guilherme", "1234","4525" ,TipoFuncionario.FARMACEUTICO, hosp1);
+		Funcionario medico = new Funcionario(null, "Matheus", LocalDate.now(), "M", "matheus", "12346", "54878", TipoFuncionario.MEDICO, hosp1);
+		Funcionario internacao = new Funcionario(null, "Daulo", LocalDate.now(), "M", "daulo", "asdfad", null, TipoFuncionario.INTERNACAO, hosp1);
 		Funcionario farmacia = new Funcionario(null, "FARMACIA", LocalDate.now(), "M", "farmacia", "123456", null, TipoFuncionario.FARMACIA, hosp1);
 		Funcionario adm = new Funcionario(null, "Administrador", LocalDate.now(), "M", "admin", "admin", null, TipoFuncionario.ADMINISTRADOR, hosp1);
 		

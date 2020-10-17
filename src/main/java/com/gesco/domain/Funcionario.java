@@ -53,7 +53,7 @@ public class Funcionario implements Serializable {
 	@Column(nullable = false)
 	private String sexo;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, unique=true)
 	private String nameUser;
 	
 	@JsonIgnore

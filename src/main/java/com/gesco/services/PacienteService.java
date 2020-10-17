@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-
+import com.gesco.domain.Funcionario;
 import com.gesco.domain.Paciente;
 import com.gesco.repositories.PacienteRepository;
 import com.gesco.services.exceptions.DataIntegrityException;
@@ -67,26 +67,16 @@ public class PacienteService {
 		return repo.findAll(pageRequest);
 	}
 	
-	// -------- MÉTODO PARA BUSCAR TODOS OS  PACIENTE PELO NOME
-	public List<Paciente>findByNome(String nome) {
-		List<Paciente> obj = repo.findByNome(nome);
+	// -------- MÉTODO PARA BUSCAR TODOS OS  PACIENTE PELO NOME OU REGISTRO
+ public List<Paciente> findNameRegistry(String nome, Long registry) {
 		
-		if (obj == null) {
-			throw new ObjectNotFoundException(
-					"Objeto não encontrado! Id: " + paciente.getId() + ", Tipo: " + Paciente.class.getName());
+		if (nome.equals("") || registry.equals("")) {
+			throw new ObjectNotFoundException(("Paciente não encontrado!"));
 		}
-		return repo.findByNome(nome);
-	}
-	
-	// -------- MÉTODO PARA LISTAR TODOS OS PACIENTES COM UM DETERMINADO REGISTRO DE ATENDIMENTO
-	public List<Paciente> findRegistry(Long registry) {
-		List<Paciente> obj = repo.findByRegistry(registry);
+			
+		return repo.findByNomeAndRegistry(nome, registry);
+		 
 		
-		 if (obj == null) {
-				throw new ObjectNotFoundException(
-						"Objeto não encontrado! Id: " + paciente.getId() + ", Tipo: " + Paciente.class.getName());
-			}
-		 return repo.findByRegistry(registry);
 	}
 	
 
