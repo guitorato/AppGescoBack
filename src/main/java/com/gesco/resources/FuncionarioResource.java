@@ -2,6 +2,7 @@ package com.gesco.resources;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import com.gesco.domain.Tratamento;
 import com.gesco.dto.AntibioticoDTO;
 import com.gesco.dto.FuncionarioDTO;
 import com.gesco.dto.TratamentoDTO;
+import com.gesco.dto.UserDTO;
 import com.gesco.services.FuncionarioService;
 
 @RestController
@@ -31,8 +33,19 @@ public class FuncionarioResource {
 	@Autowired
 	private FuncionarioService service;
 	
+	// -------- GET PROVISÓRIO PARA LOGIN
+	@RequestMapping(value="/login", method = RequestMethod.GET)
+	public ResponseEntity<Funcionario> findLogin(
+			@RequestParam(value = "user", defaultValue = "") String user, 
+			@RequestParam(value = "pass", defaultValue = "") String pass){
+		
+		Funcionario obj = service.findLogin(user, pass);
+		
+		return ResponseEntity.ok().body(obj);
+	}
 	
 	
+	// -------- GET PARA BUSCAR DE FUNCIONÁRIO POR ID
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Funcionario> findId(@PathVariable Integer id){
 		
@@ -41,6 +54,7 @@ public class FuncionarioResource {
 		return ResponseEntity.ok().body(obj);
 	}
 	
+	// -------- MÉTODO POST PARA CADASTRAR O FUNCIONÁRIO
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@RequestBody Funcionario obj){
 		obj = service.insert(obj);
@@ -49,6 +63,7 @@ public class FuncionarioResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
+	// -------- MÉTODO PUT PARA ATUALIZAR O CADASTRO DO FUNCIONÁRIO
 	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> update(@RequestBody Funcionario obj , @PathVariable Integer id){
 		obj.setIdFuncionario(id);
@@ -56,6 +71,7 @@ public class FuncionarioResource {
 		return ResponseEntity.noContent().build();
 	}
 	
+	// -------- MÉTODO DE DELETAR O CADASTRO DO FUNCIONÁRIO
 	@RequestMapping(value="/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> delete(@PathVariable Integer id){
 		
@@ -63,6 +79,7 @@ public class FuncionarioResource {
 		return ResponseEntity.noContent().build();
 	}
 	
+	// -------- MÉTODO DE LISTAR OS FUNCIONÁRIO, UTILIZEI UMA CLASSE DTO PARA FILTRAS AS INFORMAÇÕES PELO JSON
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<FuncionarioDTO>> findAll(){
 		
@@ -71,6 +88,7 @@ public class FuncionarioResource {
 		return ResponseEntity.ok().body(listDto);
 	}
 	
+	// -------- MÉTODO DE LISTAR TODOS OS FUNCIONÁRIOS, FAZ A MESMA COISA DE O findAll SÓ QUE ESSE É FILTRADO
 	@RequestMapping(value="/page", method = RequestMethod.GET)
 	public ResponseEntity<Page<FuncionarioDTO>> findPage(
 			@RequestParam(value = "page", defaultValue = "0") Integer page, 

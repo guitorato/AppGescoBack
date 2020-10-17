@@ -14,6 +14,7 @@ import com.gesco.domain.Antibiotico;
 import com.gesco.domain.Funcionario;
 import com.gesco.domain.Hospital;
 import com.gesco.domain.Paciente;
+import com.gesco.dto.UserDTO;
 import com.gesco.repositories.FuncionarioRepository;
 import com.gesco.services.exceptions.DataIntegrityException;
 import com.gesco.services.exceptions.ObjectNotFoundException;
@@ -25,21 +26,35 @@ public class FuncionarioService {
 	@Autowired
 	private FuncionarioRepository repo;
 	
+	
+	// -------- MÉTODO PROVISÓRIO DE LOGIN 
+	public Funcionario findLogin(String nameUser, String senha) {
+		 repo.findByNameUser(nameUser);
+		 Optional<Funcionario> obj = repo.findBySenha(senha);
+		 
+		 return obj.orElseThrow(() -> new ObjectNotFoundException("Usuário não encontrado!"));
+	}
+	
+	// -------- MÉTODO PARA BUSCA POR FUNCIONÁRIO POR ID
 	public Funcionario find(Integer id) {
 		 Optional<Funcionario> obj = repo.findById(id);
 		 return obj.orElseThrow(() -> new ObjectNotFoundException("Funcionário não encontrado!"));
 	}
 
+	// -------- MÉTODO PARA CADASTRO DO FUNCIONÁRIO
 	public Funcionario insert(Funcionario obj) {
 		obj.setIdFuncionario(null);
 		return repo.save(obj);
 	}
 	
+	// -------- MÉTODO PARA ATUALIZAR O CADASTRO DO FUNCIONÁRIO
 	public Funcionario update (Funcionario obj) {
 		find(obj.getIdFuncionario());
 		return repo.save(obj);
 	}
 	
+	
+	// -------- MÉTODO PARA DELETAR O FUNCIONÁRIO
 	public void delete (Integer id) {
 		find(id);
 		try {
@@ -50,14 +65,19 @@ public class FuncionarioService {
 		}
 	}
 	
+	// -------- MÉTODO PARA BUSCAR TODOS OS FUNCIONÁRIOS CADASTRADOS
 	public List<Funcionario> findAll(){
 		return repo.findAll();
 	}
 	
+	
+	// -------- MÉTODO PARA BUSCAR DE TODOS OS CADASTROS, COM FILTRO DE QUANTIDADES A SEREM EXIBIDAS, ORDENAÇÃO 
 	public Page<Funcionario> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		
 
 		return repo.findAll(pageRequest);
 	}
+
+	
 }
