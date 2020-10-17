@@ -33,6 +33,7 @@ public class PacienteResource {
 	private PacienteService service;
 	
 	
+	// -------- MÉTODO PARA BUSCAR POR ID DO PACIENTE
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Paciente> findId(@PathVariable Integer id){
 		
@@ -41,6 +42,7 @@ public class PacienteResource {
 		return ResponseEntity.ok().body(obj);
 	}
 	
+	// -------- MÉTODO PARA CADASTRAR O PACIENTE
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody Paciente obj){
 		obj = service.insert(obj);
@@ -49,6 +51,7 @@ public class PacienteResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
+	// -------- MÉTODO PARA ATUALIZAR O PACIENTE
 	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> update(@Valid @RequestBody Paciente obj , @PathVariable Integer id){
 		obj.setId(id);
@@ -56,6 +59,7 @@ public class PacienteResource {
 		return ResponseEntity.noContent().build();
 	}
 	
+	// -------- MÉTODO DELETAR O PACIENTE
 	@RequestMapping(value="/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> delete(@PathVariable Integer id){
 		
@@ -71,6 +75,7 @@ public class PacienteResource {
 		return ResponseEntity.ok().body(list);
 	}
 	
+	// -------- MÉTODO PARA LISTAR TODOS OS PACIENTES C/ FILTRO (PAGINAÇÃO,QNT DE DADOS A SEREM EXIBIDAS, ETC)
 	@RequestMapping(value="/page", method = RequestMethod.GET)
 	public ResponseEntity<Page<Paciente>> findPage(
 			@RequestParam(value = "page", defaultValue = "0") Integer page, 
@@ -83,30 +88,31 @@ public class PacienteResource {
 		return ResponseEntity.ok().body(list);
 	}
 	
+	// -------- MÉTODO PARA BUSCAR O NOME DO PACIENTE
 	@RequestMapping(value="/nome", method=RequestMethod.GET)
 	public ResponseEntity<List<Paciente>> findName(@RequestParam(value="value") String nome) {
 		List<Paciente> obj = service.findByNome(nome);
 		return ResponseEntity.ok().body(obj);
 	}
 	
+	// -------- MÉTODO PARA BUSCAR O REGISTRO DE ATENDIMENTO DO PACIENTE
 	@RequestMapping(value="/registro", method=RequestMethod.GET)
 	public ResponseEntity<List<Paciente>> findRegistry(@RequestParam(value="value") Long registry) {
 		List<Paciente> obj = service.findRegistry(registry);
 		return ResponseEntity.ok().body(obj);
 	}
 	
-	
+	// -------- MÉTODO PARA BUSCAR O REGISTRO MAIS O NOME DO PACIENTE
 	@RequestMapping(value="/buscar", method=RequestMethod.GET)
 	public ResponseEntity<List<Paciente>> findNameRegistry(
-			@RequestParam(value = "registro", required = false, defaultValue = "0") Long registry, 
-			@RequestParam(value = "nome", required = false, defaultValue = "") String nome ){
+			@RequestParam(required = false, defaultValue = "0") Long registry, 
+			@RequestParam(required = false, defaultValue = "") String nome ){
 		
 		List<Paciente> obj = new ArrayList<>();
 		
 		if(nome != null || nome != "") {
 			
 			obj = service.findByNome(nome);
-			System.out.println("TESTE1");
 			
 			
 			
@@ -114,7 +120,6 @@ public class PacienteResource {
 		if (registry.byteValue() != 0)  {
 			
 			obj = service.findRegistry(registry);
-			System.out.println("TESTE2");
 			
 		}
 		return ResponseEntity.ok().body(obj);

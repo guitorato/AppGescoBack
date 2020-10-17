@@ -97,8 +97,11 @@ public class Funcionario implements Serializable {
 		this.tipoFuncionario = tipoFuncionario.getCod();
 		this.hospital = hospital;
 	}
-
-
+	
+	public Funcionario(String nameUser, String senha) {
+		this.nameUser = nameUser;
+		this.senha = senha;
+	}
 
 	public Integer getIdFuncionario() {
 		return idFuncionario;

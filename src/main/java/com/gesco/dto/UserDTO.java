@@ -7,22 +7,22 @@ import com.gesco.domain.Funcionario;
 public class UserDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private String user;
+	private String nameUser;
 	private String senha;
 	private Integer tipoUser;
 	
 	public UserDTO () {}
 	public UserDTO (Funcionario obj) {
-		user = obj.getNameUser();
+		nameUser = obj.getNameUser();
 		senha = obj.getSenha();
 		tipoUser = obj.getTipoFuncionario().getCod();
 	}
 	
-	public String getUser() {
-		return user;
+	public String getNameUser() {
+		return nameUser;
 	}
-	public void setUser(String user) {
-		this.user = user;
+	public void setNameUser(String nameUser) {
+		this.nameUser = nameUser;
 	}
 	public String getSenha() {
 		return senha;

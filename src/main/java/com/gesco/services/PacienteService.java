@@ -25,21 +25,25 @@ public class PacienteService {
 	
 	private Paciente paciente;
 	
+	// -------- MÉTODO PARA BUSCAR POR ID
 	public Paciente find(Integer id) {
 		 Optional<Paciente> obj = repo.findById(id);
 		 return obj.orElseThrow(() -> new ObjectNotFoundException("Paciente não encontrado!"));
 	}
 	
+	// -------- MÉTODO PARA CADASTRAR PACIENTE
 	public Paciente insert(Paciente obj) {
 		obj.setId(null);
 		return repo.save(obj);
 	}
 	
+	// -------- MÉTODO PARA ATUALIZAR PACIENTE
 	public Paciente update (Paciente obj) {
 		find(obj.getId());
 		return repo.save(obj);
 	}
 	
+	// -------- MÉTODO PARA DELETAR PACIENTE
 	public void delete (Integer id) {
 		find(id);
 		try {
@@ -50,10 +54,12 @@ public class PacienteService {
 		}
 	}
 	
+	// -------- MÉTODO PARA LISTAR TODOS OS PACIENTES 
 	public List<Paciente> findAll(){
 		return repo.findAll();
 	}
 	
+	// -------- MÉTODO PARA LISTAR TODOS OS PACIENTES C/ FILTRO
 	public Page<Paciente> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		
@@ -61,6 +67,7 @@ public class PacienteService {
 		return repo.findAll(pageRequest);
 	}
 	
+	// -------- MÉTODO PARA BUSCAR TODOS OS  PACIENTE PELO NOME
 	public List<Paciente>findByNome(String nome) {
 		List<Paciente> obj = repo.findByNome(nome);
 		
@@ -71,6 +78,7 @@ public class PacienteService {
 		return repo.findByNome(nome);
 	}
 	
+	// -------- MÉTODO PARA LISTAR TODOS OS PACIENTES COM UM DETERMINADO REGISTRO DE ATENDIMENTO
 	public List<Paciente> findRegistry(Long registry) {
 		List<Paciente> obj = repo.findByRegistry(registry);
 		
