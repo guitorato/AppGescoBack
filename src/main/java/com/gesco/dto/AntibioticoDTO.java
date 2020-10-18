@@ -17,6 +17,7 @@ public class AntibioticoDTO implements Serializable {
 	private LocalDate validade;
 	private Double dosagem;
 	private String aplicacao;
+	private String funcionario;
 	
 	public AntibioticoDTO () {}
 	
@@ -27,6 +28,7 @@ public class AntibioticoDTO implements Serializable {
 		validade = obj.getValidade();
 		dosagem = obj.getDosagem();
 		aplicacao = obj.getAplicacao();
+		funcionario = obj.getFuncionario().getNome();
 	}
 
 	public Integer getId() {
@@ -76,6 +78,16 @@ public class AntibioticoDTO implements Serializable {
 	public void setAplicacao(String aplicacao) {
 		this.aplicacao = aplicacao;
 	}
+
+	public String getFuncionario() {
+		return funcionario;
+	}
+
+	public void setFuncionario(String funcionario) {
+		this.funcionario = funcionario;
+	}
+	
+	
 	
 	
 }
