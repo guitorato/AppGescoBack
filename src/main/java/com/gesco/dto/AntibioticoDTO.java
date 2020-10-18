@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 
 import com.gesco.domain.Antibiotico;
+import com.gesco.domain.Funcionario;
 
 
 public class AntibioticoDTO implements Serializable {
@@ -17,7 +18,7 @@ public class AntibioticoDTO implements Serializable {
 	private LocalDate validade;
 	private Double dosagem;
 	private String aplicacao;
-	private String funcionario;
+	private String farmaceutico;
 	
 	public AntibioticoDTO () {}
 	
@@ -28,7 +29,7 @@ public class AntibioticoDTO implements Serializable {
 		validade = obj.getValidade();
 		dosagem = obj.getDosagem();
 		aplicacao = obj.getAplicacao();
-		//funcionario = obj.getFuncionario().getNome();
+		farmaceutico = obj.getFuncionario().getNome();
 	}
 
 	public Integer getId() {
@@ -79,12 +80,12 @@ public class AntibioticoDTO implements Serializable {
 		this.aplicacao = aplicacao;
 	}
 
-	public String getFuncionario() {
-		return funcionario;
+	public String getFarmaceutico() {
+		return farmaceutico;
 	}
 
-	public void setFuncionario(String funcionario) {
-		this.funcionario = funcionario;
+	public void setFarmaceutico(String farmaceutico) {
+		this.farmaceutico = farmaceutico;
 	}
 	
 	
