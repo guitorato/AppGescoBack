@@ -28,7 +28,7 @@ public class AntibioticoDTO implements Serializable {
 		validade = obj.getValidade();
 		dosagem = obj.getDosagem();
 		aplicacao = obj.getAplicacao();
-		//funcionario = obj.getFuncionario().getNome();
+		funcionario = obj.getFuncionario().getNome();
 	}
 
 	public Integer getId() {
