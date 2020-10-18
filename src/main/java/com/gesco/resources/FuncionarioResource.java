@@ -33,20 +33,6 @@ public class FuncionarioResource {
 	@Autowired
 	private FuncionarioService service;
 	
-	// -------- GET PROVISÓRIO PARA LOGIN
-	@RequestMapping(value="/login", method = RequestMethod.GET)
-	public ResponseEntity<UserDTO> findLogin(
-			@RequestParam(value = "user", defaultValue = "") String user, 
-			@RequestParam(value = "pass", defaultValue = "") String pass){
-		
-		
-		Funcionario obj = service.findLogin(user, pass);
-		
-		UserDTO objDTO = new UserDTO(obj);
-		
-		return ResponseEntity.ok().body(objDTO);
-	}
-	
 	
 	// -------- GET PARA BUSCAR DE FUNCIONÁRIO POR ID
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
