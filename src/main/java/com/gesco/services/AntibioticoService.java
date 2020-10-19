@@ -21,7 +21,8 @@ public class AntibioticoService {
 	@Autowired
 	private AntibioticoRepository repo;
 	
-	public Antibiotico find(Integer id) {
+	
+	public Antibiotico findId(Integer id) {
 		 Optional<Antibiotico> obj = repo.findById(id);
 		 return obj.orElseThrow(() -> new ObjectNotFoundException("Antibiótico não encontrado!"));
 	}
@@ -32,12 +33,12 @@ public class AntibioticoService {
 	}
 	
 	public Antibiotico update (Antibiotico obj) {
-		find(obj.getId());
+		findId(obj.getId());
 		return repo.save(obj);
 	}
 	
 	public void delete (Integer id) {
-		find(id);
+		findId(id);
 		try {
 			
 			repo.deleteById(id);
@@ -49,5 +50,14 @@ public class AntibioticoService {
 	public List<Antibiotico> findAll(){
 		return repo.findAll();
 	}
+	
+	public List<Antibiotico> findByNome(String nome) {
+	
+	if (nome.equals("")) {
+		throw new ObjectNotFoundException(("Antibiótico não encontrado!"));
+	}else
+		return repo.findByNome(nome);
+	}
+
 
 }

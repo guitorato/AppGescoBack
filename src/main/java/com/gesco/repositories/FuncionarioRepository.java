@@ -18,7 +18,11 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Intege
 	
 	 
 	 @Transactional(readOnly=false)
-	 Optional<Funcionario> findByNameUserAndSenha(String nameUser,String senha);
+	 Optional<Funcionario> findByNameUserAndSenha(String name, String senha);
+	 
+	 @Transactional(readOnly=false)
+	 Optional<Funcionario> findByNome(String name);
+	 
 	 
 
 }

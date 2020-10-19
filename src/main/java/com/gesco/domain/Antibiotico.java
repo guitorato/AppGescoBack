@@ -27,8 +27,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
 @Entity
 public class Antibiotico implements Serializable {
 	private static final long serialVersionUID = 1L;

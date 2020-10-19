@@ -34,7 +34,7 @@ public class Paciente implements Serializable {
 	private Integer id;
 	
 	@Column(nullable = false)
-	private Long registry;
+	private Integer registry;
 	
 	@Column(nullable = false)
 	@NotEmpty(message = "Preenchimento do Nome do Paciente Obrigatório")
@@ -54,7 +54,7 @@ public class Paciente implements Serializable {
 	
 	public Paciente() {}
 
-	public Paciente(Integer id, Long registry, String nome, LocalDate dtNascimento, String sexo) {
+	public Paciente(Integer id, Integer registry, String nome, LocalDate dtNascimento, String sexo) {
 		super();
 		this.id = id;
 		this.registry = registry;
@@ -74,11 +74,11 @@ public class Paciente implements Serializable {
 		this.id = id;
 	}
 
-	public Long getRegistry() {
+	public Integer getRegistry() {
 		return registry;
 	}
 
-	public void setRegistry(Long registy) {
+	public void setRegistry(Integer registy) {
 		this.registry = registy;
 	}
 
