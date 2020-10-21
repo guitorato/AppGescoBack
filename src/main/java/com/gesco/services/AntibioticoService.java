@@ -14,6 +14,8 @@ import com.gesco.repositories.FuncionarioRepository;
 import com.gesco.services.exceptions.DataIntegrityException;
 import com.gesco.services.exceptions.ObjectNotFoundException;
 
+import io.swagger.annotations.ApiOperation;
+
 
 @Service
 public class AntibioticoService {
@@ -21,22 +23,25 @@ public class AntibioticoService {
 	@Autowired
 	private AntibioticoRepository repo;
 	
-	
+	@ApiOperation(value = "BUSCAR POR ID DO Antibiótico")
 	public Antibiotico findId(Integer id) {
 		 Optional<Antibiotico> obj = repo.findById(id);
 		 return obj.orElseThrow(() -> new ObjectNotFoundException("Antibiótico não encontrado!"));
 	}
 	
+	@ApiOperation(value = "INSERE UM NOVO Antibiótico")
 	public Antibiotico insert(Antibiotico obj) {
 		obj.setId(null);
 		return repo.save(obj);
 	}
 	
+	@ApiOperation(value = "ATUALIZA UM Antibiótico")
 	public Antibiotico update (Antibiotico obj) {
 		findId(obj.getId());
 		return repo.save(obj);
 	}
 	
+	@ApiOperation(value = "DELETA UM Antibiótico")
 	public void delete (Integer id) {
 		findId(id);
 		try {
@@ -47,10 +52,12 @@ public class AntibioticoService {
 		}
 	}
 	
+	@ApiOperation(value = "LISTA DE TODOS OS Antibiótico S/FILTRO")
 	public List<Antibiotico> findAll(){
 		return repo.findAll();
 	}
 	
+	@ApiOperation(value = "BUSCAR POR NOME DO Antibiótico, ELE BUSCA MESMO INCOMPLETO O NOME")
 	public List<Antibiotico> findByNome(String nome) {
 	
 	if (nome.equals("")) {

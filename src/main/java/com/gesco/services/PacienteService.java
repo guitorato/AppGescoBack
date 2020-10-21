@@ -68,13 +68,13 @@ public class PacienteService {
 	}
 	
 	// -------- MÉTODO PARA BUSCAR TODOS OS  PACIENTE PELO NOME OU REGISTRO
- public List<Paciente> findNameRegistry(String nome, Long registry) {
+ public List<Paciente> findName(String nome) {
 		
-		if (nome.equals("") || registry.equals("")) {
-			throw new ObjectNotFoundException(("Paciente não encontrado!"));
+		if (nome.equals("")) {
+			throw new ObjectNotFoundException(("Digite o nome do paciente."));
 		}
 			
-		return repo.findByNomeAndRegistry(nome, registry);
+		return repo.findByNome(nome);
 		 
 		
 	}

@@ -25,6 +25,8 @@ import com.gesco.services.AntibioticoService;
 import com.gesco.services.FuncionarioService;
 import com.gesco.services.PacienteService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping(value="/pacientes")
 public class PacienteResource {
@@ -33,8 +35,8 @@ public class PacienteResource {
 	private PacienteService service;
 	
 	
-	// -------- MÉTODO PARA BUSCAR POR ID DO PACIENTE
-	@RequestMapping(value="/{id}", method = RequestMethod.GET)
+	@ApiOperation(value = "BUSCAR POR ID DO PACIENTE")
+	@RequestMapping(value="/{id}", method = RequestMethod.GET , produces="application/json")
 	public ResponseEntity<Paciente> findId(@PathVariable Integer id){
 		
 		Paciente obj = service.find(id);
@@ -42,8 +44,8 @@ public class PacienteResource {
 		return ResponseEntity.ok().body(obj);
 	}
 	
-	// -------- MÉTODO PARA CADASTRAR O PACIENTE
-	@RequestMapping(method = RequestMethod.POST)
+	@ApiOperation(value = "INSERE UM PACIENTE")
+	@RequestMapping(method = RequestMethod.POST )
 	public ResponseEntity<Void> insert(@Valid @RequestBody Paciente obj){
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -51,7 +53,7 @@ public class PacienteResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
-	// -------- MÉTODO PARA ATUALIZAR O PACIENTE
+	@ApiOperation(value = "ATUALIZA TODOS OS PACIENTES")
 	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> update(@Valid @RequestBody Paciente obj , @PathVariable Integer id){
 		obj.setId(id);
@@ -59,7 +61,7 @@ public class PacienteResource {
 		return ResponseEntity.noContent().build();
 	}
 	
-	// -------- MÉTODO DELETAR O PACIENTE
+	@ApiOperation(value = "DELETA TODOS OS PACIENTES")
 	@RequestMapping(value="/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> delete(@PathVariable Integer id){
 		
@@ -67,6 +69,7 @@ public class PacienteResource {
 		return ResponseEntity.noContent().build();
 	}
 	
+	@ApiOperation(value = "LISTAR TODOS OS PACIENTES S/ FILTRO")
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Paciente>> findAll(){
 		
@@ -75,8 +78,8 @@ public class PacienteResource {
 		return ResponseEntity.ok().body(list);
 	}
 	
-	// -------- MÉTODO PARA LISTAR TODOS OS PACIENTES C/ FILTRO (PAGINAÇÃO,QNT DE DADOS A SEREM EXIBIDAS, ETC)
-	@RequestMapping(value="/page", method = RequestMethod.GET)
+	@ApiOperation(value = "LISTAR TODOS OS PACIENTES C/ FILTRO (Nº DE LINHAS / PAGINAÇÃO, QUE ORDEM UTILIZARÁ, E DIREÇÃO")
+	@RequestMapping(value="/page", method = RequestMethod.GET , produces="application/json")
 	public ResponseEntity<Page<Paciente>> findPage(
 			@RequestParam(value = "page", defaultValue = "0") Integer page, 
 			@RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage, 
@@ -89,13 +92,12 @@ public class PacienteResource {
 	}
 	
 	
-	// -------- MÉTODO PARA BUSCAR O REGISTRO MAIS O NOME DO PACIENTE
-	@RequestMapping(value="/buscar", method=RequestMethod.GET)
-	public ResponseEntity<List<Paciente>> findNameRegistry(
-			@RequestParam(required = false, defaultValue = "0") Long registry, 
-			@RequestParam(required = false, defaultValue = "") String nome ){
+	@ApiOperation(value = "BUSCA POR NOME DO PACIENTE, ELE BUSCA MESMO SE ESTIVER INCOMPLETO O NOME")
+	@RequestMapping(value="/buscar", method=RequestMethod.GET , produces="application/json")
+	public ResponseEntity<List<Paciente>> findName(
+			@RequestParam(value = "nome" ,required = false, defaultValue = "") String nome ){
 		
-		List<Paciente> obj = service.findNameRegistry(nome, registry);
+		List<Paciente> obj = service.findName(nome);
 		
 
 		return ResponseEntity.ok().body(obj);

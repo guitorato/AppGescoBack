@@ -70,9 +70,9 @@ public class AntibioticoResource {
 	public ResponseEntity<List<AntibioticoDTO>> findName(
 			@RequestParam(value = "nome", defaultValue = "") String nome){
 		
-		List<Antibiotico> list = service.findByNome(nome);
+		List<Antibiotico> list = service.findByNome(nome.toUpperCase());
 		List<AntibioticoDTO> listDTO =  list.stream().map(obj -> new AntibioticoDTO(obj)).collect(Collectors.toList());
-	
+		
 		return ResponseEntity.ok().body(listDTO);
 	}
 	

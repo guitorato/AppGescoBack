@@ -67,7 +67,7 @@ public class Antibiotico implements Serializable {
 			Funcionario funcionario) {
 		super();
 		this.id = id;
-		this.nome = nome;
+		this.nome = nome.toUpperCase();
 		this.lote = lote;
 		this.validade = validade;
 		this.dosagem = dosagem;
@@ -83,10 +83,10 @@ public class Antibiotico implements Serializable {
 		this.id = id;
 	}
 	public String getNome() {
-		return nome;
+		return nome.toUpperCase();
 	}
 	public void setNome(String nome) {
-		this.nome = nome;
+		this.nome = nome.toUpperCase();
 	}
 	public String getLote() {
 		return lote;
