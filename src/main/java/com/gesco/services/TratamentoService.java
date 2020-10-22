@@ -60,5 +60,10 @@ public class TratamentoService {
 
 		return repo.findAll(pageRequest);
 	}
+	
+	public List<Tratamento> findPaciente(String nome) {
+	
+		 return repo.findByPaciente(nome);
+	}
 
 }
