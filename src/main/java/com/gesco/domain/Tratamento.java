@@ -83,9 +83,9 @@ public class Tratamento implements Serializable{
 	public Tratamento() {}
 		
 
+
 	public Tratamento(Integer id, String diagnostico, LocalDate inicio_tratamento, LocalDate fim_tratamento,
 			double doseDiario, String statusTratamento, String obs, Funcionario funcionario, Paciente paciente) {
-		super();
 		this.id = id;
 		this.diagnostico = diagnostico;
 		this.inicio_tratamento = inicio_tratamento;
@@ -96,6 +96,9 @@ public class Tratamento implements Serializable{
 		this.funcionario = funcionario;
 		this.paciente = paciente;
 	}
+
+
+
 
 
 

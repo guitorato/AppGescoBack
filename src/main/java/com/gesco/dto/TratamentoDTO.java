@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.gesco.domain.Antibiotico;
 import com.gesco.domain.Tratamento;
@@ -13,7 +14,7 @@ public class TratamentoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
-	private String nm_paciente;
+	private String paciente;
 	private String diagnostico;
 	private LocalDate inicio_tratamento;
 	private LocalDate fim_tratamento;
@@ -21,12 +22,12 @@ public class TratamentoDTO implements Serializable {
 	private String statusTratamento;
 	private String medico;
 	private String obs;
-	private List<Antibiotico> antibioticos = new ArrayList<>();
+	private List<String> antibioticos;
 	
 	public TratamentoDTO () {}
-	public TratamentoDTO (Tratamento obj ) {
+	public TratamentoDTO (Tratamento obj) {
 		id = obj.getId();
-		nm_paciente = obj.getPaciente().getNome();
+		paciente = obj.getPaciente().getNome();
 		diagnostico = obj.getDiagnostico();
 		inicio_tratamento = obj.getInicio_tratamento();
 		fim_tratamento = obj.getFim_tratamento();
@@ -34,20 +35,25 @@ public class TratamentoDTO implements Serializable {
 		statusTratamento = obj.getStatusTratamento();
 		obs = obj.getObs();
 		medico = obj.getFuncionario().getNome();
-		antibioticos = obj.getAntibioticos();
+		antibioticos = getAtbNomes(obj);
 		
 	}
+	
+	private List<String> getAtbNomes(Tratamento obj){
+		return obj.getAntibioticos().stream().map(atb -> atb.getNome()).collect(Collectors.toList());
+	}
+	
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getNm_paciente() {
-		return nm_paciente;
+	public String getPaciente() {
+		return paciente;
 	}
-	public void setNm_paciente(String nm_paciente) {
-		this.nm_paciente = nm_paciente;
+	public void setPaciente(String paciente) {
+		this.paciente = paciente;
 	}
 	public String getDiagnostico() {
 		return diagnostico;
@@ -85,10 +91,11 @@ public class TratamentoDTO implements Serializable {
 	public void setObs(String obs) {
 		this.obs = obs;
 	}
-	public List<Antibiotico> getAntibioticos() {
+	public List<String> getAntibioticos() {
 		return antibioticos;
 	}
-	public void setAntibioticos(List<Antibiotico> antibioticos) {
+	public void setAntibioticos(List<String> antibioticos) {
+		
 		this.antibioticos = antibioticos;
 	}
 	public String getMedico() {

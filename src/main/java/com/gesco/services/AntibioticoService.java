@@ -61,7 +61,7 @@ public class AntibioticoService {
 	public List<Antibiotico> findByNome(String nome) {
 	
 	if (nome.equals("")) {
-		throw new ObjectNotFoundException(("Antibiótico não encontrado!"));
+		throw new ObjectNotFoundException(("Digite o nome do Antibiótico!"));
 	}else
 		return repo.findByNome(nome);
 	}
