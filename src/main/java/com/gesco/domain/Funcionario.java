@@ -66,7 +66,7 @@ public class Funcionario implements Serializable {
 	private Integer tipoFuncionario;
 	
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="hospital_id") 
 	private Hospital hospital;
 	

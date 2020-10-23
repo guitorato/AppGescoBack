@@ -70,12 +70,12 @@ public class Tratamento implements Serializable{
 
 	
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="medico_id") 
 	private Funcionario funcionario;
 	
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="paciente_id") 
 	private Paciente paciente;
 	

@@ -36,11 +36,12 @@ public class FuncionarioResource {
 	
 	// -------- GET PARA BUSCAR DE FUNCIONÁRIO POR ID
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Funcionario> findId(@PathVariable Integer id){
+	public ResponseEntity<FuncionarioDTO> findId(@PathVariable Integer id){
 		
 		Funcionario obj = service.find(id);
+		FuncionarioDTO objtDTO = new FuncionarioDTO(obj);
 		
-		return ResponseEntity.ok().body(obj);
+		return ResponseEntity.ok().body(objtDTO);
 	}
 	
 	// -------- MÉTODO POST PARA CADASTRAR O FUNCIONÁRIO

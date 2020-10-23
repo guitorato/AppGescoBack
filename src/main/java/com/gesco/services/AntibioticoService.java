@@ -47,7 +47,10 @@ public class AntibioticoService {
 		try {
 			
 			repo.deleteById(id);
+			System.out.println("Deltado: "+id);
+			
 		}catch (DataIntegrityViolationException e) {
+			
 			throw new DataIntegrityException("Não é possível excluir");
 		}
 	}

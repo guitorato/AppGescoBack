@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,11 +29,12 @@ public class AntibioticoResource {
 	
 	//GET POR ID DO ATB
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Antibiotico> findId(@PathVariable Integer id){
+	public ResponseEntity<AntibioticoDTO> findId(@PathVariable Integer id){
 		
 		Antibiotico obj = service.findId(id);
+		AntibioticoDTO objDTO = new AntibioticoDTO(obj);
 	
-		return ResponseEntity.ok().body(obj);
+		return ResponseEntity.ok().body(objDTO);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
@@ -54,7 +56,7 @@ public class AntibioticoResource {
 	public ResponseEntity<Void> delete(@PathVariable Integer id){
 		
 		service.delete(id);
-		return ResponseEntity.noContent().build();
+		 return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)

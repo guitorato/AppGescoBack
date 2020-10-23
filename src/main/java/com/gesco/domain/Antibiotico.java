@@ -52,7 +52,7 @@ public class Antibiotico implements Serializable {
 	private String aplicacao;
 	
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="farmaceutico_id")
 	private Funcionario funcionario;
 	

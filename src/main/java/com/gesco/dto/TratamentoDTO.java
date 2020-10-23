@@ -2,13 +2,10 @@ package com.gesco.dto;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.gesco.domain.Antibiotico;
 import com.gesco.domain.Tratamento;
-import com.gesco.services.AntibioticoService;
 
 public class TratamentoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -22,7 +19,7 @@ public class TratamentoDTO implements Serializable {
 	private String statusTratamento;
 	private String medico;
 	private String obs;
-	private List<String> antibioticos;
+	private List<?> antibioticos;
 	
 	public TratamentoDTO () {}
 	public TratamentoDTO (Tratamento obj) {
@@ -35,12 +32,16 @@ public class TratamentoDTO implements Serializable {
 		statusTratamento = obj.getStatusTratamento();
 		obs = obj.getObs();
 		medico = obj.getFuncionario().getNome();
-		antibioticos = getAtbNomes(obj);
+		antibioticos = ((TratamentoDTO) getAtbId(obj)).getAtbNomes(obj);
 		
 	}
 	
 	private List<String> getAtbNomes(Tratamento obj){
 		return obj.getAntibioticos().stream().map(atb -> atb.getNome()).collect(Collectors.toList());
+	}
+	
+	private List<Integer> getAtbId(Tratamento obj){
+		return obj.getAntibioticos().stream().map(atb -> atb.getId()).collect(Collectors.toList());
 	}
 	
 	public Integer getId() {
@@ -91,10 +92,10 @@ public class TratamentoDTO implements Serializable {
 	public void setObs(String obs) {
 		this.obs = obs;
 	}
-	public List<String> getAntibioticos() {
+	public List<?> getAntibioticos() {
 		return antibioticos;
 	}
-	public void setAntibioticos(List<String> antibioticos) {
+	public void setAntibioticos(List<?> antibioticos) {
 		
 		this.antibioticos = antibioticos;
 	}
