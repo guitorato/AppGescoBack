@@ -9,6 +9,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +22,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.gesco.domain.Antibiotico;
 import com.gesco.domain.Funcionario;
 import com.gesco.domain.Paciente;
+import com.gesco.helpers.Helper;
 import com.gesco.services.AntibioticoService;
 import com.gesco.services.FuncionarioService;
 import com.gesco.services.PacienteService;
@@ -36,8 +38,9 @@ public class PacienteResource {
 	
 	
 	@ApiOperation(value = "BUSCAR POR ID DO PACIENTE")
-	@RequestMapping(value="/{id}", method = RequestMethod.GET , produces="application/json")
-	public ResponseEntity<Paciente> findId(@PathVariable Integer id){
+	@RequestMapping(value="/buscar/{id}", method = RequestMethod.GET , produces="application/json")
+	public ResponseEntity<Paciente> findId(@PathVariable("id") Integer id){
+		
 		
 		Paciente obj = service.find(id);
 		
@@ -92,15 +95,20 @@ public class PacienteResource {
 	}
 	
 	
-	@ApiOperation(value = "BUSCA POR NOME DO PACIENTE, ELE BUSCA MESMO SE ESTIVER INCOMPLETO O NOME")
-	@RequestMapping(value="/buscar", method=RequestMethod.GET , produces="application/json")
-	public ResponseEntity<List<Paciente>> findName(
-			@RequestParam(value = "nome" ,required = false, defaultValue = "") String nome ){
+	@ApiOperation(value = "BUSCA POR NOME DO PACIENTE OU POR REGISTRO")
+	@RequestMapping(value="/{param}", method=RequestMethod.GET , produces="application/json")
+	public ResponseEntity<List<Paciente>> findName(@PathVariable String param ){
+
+		List<Paciente> list = null;
+		list = Helper.isNumber(param) ? service.findRegistry(Integer.parseInt(param)) : service.findName(param);
 		
-		List<Paciente> obj = service.findName(nome);
+		return ResponseEntity.ok().body(list);
+	}
 		
 
-		return ResponseEntity.ok().body(obj);
-	}
 	
+	
+//	
 }
+	
+

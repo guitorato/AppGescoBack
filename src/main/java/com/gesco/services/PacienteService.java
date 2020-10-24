@@ -3,14 +3,13 @@ package com.gesco.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import com.gesco.domain.Funcionario;
 import com.gesco.domain.Paciente;
 import com.gesco.repositories.PacienteRepository;
 import com.gesco.services.exceptions.DataIntegrityException;
@@ -67,8 +66,8 @@ public class PacienteService {
 		return repo.findAll(pageRequest);
 	}
 	
-	// -------- MÉTODO PARA BUSCAR TODOS OS  PACIENTE PELO NOME OU REGISTRO
- public List<Paciente> findName(String nome) {
+	// -------- MÉTODO PARA BUSCAR TODOS OS  PACIENTE PELO NOME 
+	public List<Paciente> findName(String nome) {
 		
 		if (nome.equals("")) {
 			throw new ObjectNotFoundException(("Digite o nome do paciente."));
@@ -78,6 +77,16 @@ public class PacienteService {
 		 
 		
 	}
+	
+	// -------- MÉTODO PARA BUSCAR TODOS OS  PACIENTE PELO REGISTRO
+	 public List<Paciente> findRegistry(Integer registry) {
+			
+		 	
+			return repo.findByRegistry(registry);
+			 
+			
+		}
+ 
 	
 
 }
