@@ -2,15 +2,24 @@ package com.gesco.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotEmpty;
+
 import com.gesco.domain.Funcionario;
 
 public class UserDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
 	private String nameUser;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
 	private String senha;
+	
 	private Integer tipoUser;
+	
+	private Integer hospital;
 	
 	public UserDTO () {}
 	public UserDTO (Funcionario obj) {
@@ -18,6 +27,7 @@ public class UserDTO implements Serializable {
 		nameUser = obj.getNameUser();
 		senha = obj.getSenha();
 		tipoUser = obj.getTipoFuncionario().getCod();
+		hospital = obj.getHospital().getId();
 	}
 	
 	
@@ -44,6 +54,12 @@ public class UserDTO implements Serializable {
 	}
 	public void setTipoUser(Integer tipoUser) {
 		this.tipoUser = tipoUser;
+	}
+	public Integer getHospital() {
+		return hospital;
+	}
+	public void setHospital(Integer hospital) {
+		this.hospital = hospital;
 	}
 	
 	
