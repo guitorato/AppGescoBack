@@ -1,5 +1,7 @@
 package com.gesco.config;
 
+import java.text.ParseException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +17,7 @@ public class TestConfig {
 	private DBService dbService;
 
 	@Bean
-	public boolean instantiateDatabase() {
+	public boolean instantiateDatabase() throws ParseException {
 		dbService.instantiateTestDataBase();
 		return true;
 	}

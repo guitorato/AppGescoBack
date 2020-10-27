@@ -1,5 +1,6 @@
 package com.gesco.services;
 
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.Arrays;
 
@@ -35,7 +36,8 @@ public class DBService {
 	@Autowired
 	private TratamentoRepository tratamentoRepository;
 	
-	public void instantiateTestDataBase() {
+	public void instantiateTestDataBase() throws ParseException {
+		
 		
 		Hospital hosp1 = new Hospital(null, "SPDM", "Rua bla bla", "5457", "Ocian", "Praia Grande-SP");
 		
@@ -55,6 +57,7 @@ public class DBService {
 		Antibiotico atb2 = new Antibiotico(null, "Meropenem","AL4521-1", LocalDate.now(), 1.0 , "EV", medico);
 		
 		antibioticoRepository.saveAll(Arrays.asList(atb1,atb2));
+		
 		
 		Paciente pc1 = new Paciente(null, 455455, "Carlos Eduardo", LocalDate.now(), "Masculino");
 		Paciente pc2 = new Paciente(null, 48967867, "Ângelo", LocalDate.now(), "Outros");

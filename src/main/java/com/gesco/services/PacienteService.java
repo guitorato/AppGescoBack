@@ -22,7 +22,6 @@ public class PacienteService {
 	@Autowired
 	private PacienteRepository repo;
 	
-	private Paciente paciente;
 	
 	// -------- MÉTODO PARA BUSCAR POR ID
 	public Paciente find(Integer id) {

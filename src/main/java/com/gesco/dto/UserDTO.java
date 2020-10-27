@@ -11,6 +11,8 @@ public class UserDTO implements Serializable {
 	
 	private Integer id;
 	
+	private String nome;
+	
 	@NotEmpty(message="Preenchimento obrigatório")
 	private String nameUser;
 	
@@ -24,6 +26,7 @@ public class UserDTO implements Serializable {
 	public UserDTO () {}
 	public UserDTO (Funcionario obj) {
 		id = obj.getIdFuncionario();
+		nome = obj.getNome();
 		nameUser = obj.getNameUser();
 		senha = obj.getSenha();
 		tipoUser = obj.getTipoFuncionario().getCod();
@@ -36,6 +39,13 @@ public class UserDTO implements Serializable {
 	}
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 	public String getNameUser() {
 		return nameUser;

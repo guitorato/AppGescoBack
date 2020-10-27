@@ -3,9 +3,7 @@ package com.gesco.dto;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-
 import com.gesco.domain.Antibiotico;
-import com.gesco.domain.Funcionario;
 
 
 public class AntibioticoDTO implements Serializable {

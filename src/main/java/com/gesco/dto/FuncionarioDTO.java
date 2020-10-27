@@ -3,19 +3,37 @@ package com.gesco.dto;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.validation.constraints.NotEmpty;
+
 import com.gesco.domain.Funcionario;
 
 public class FuncionarioDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
+	
 	private Integer idFuncionario;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
 	private String nome;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
 	private LocalDate dtNascimento;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
 	private String sexo;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
 	private String nameUser;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
 	private String senha;
+	
 	private String crmOuCrf;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
 	private String tipoFuncionario;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
 	private String hospital;
 	
 	public FuncionarioDTO() {}

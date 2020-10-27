@@ -10,10 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import com.gesco.domain.Antibiotico;
-import com.gesco.domain.Paciente;
 import com.gesco.domain.Tratamento;
-import com.gesco.repositories.PacienteRepository;
 import com.gesco.repositories.TratamentoRepository;
 import com.gesco.services.exceptions.DataIntegrityException;
 import com.gesco.services.exceptions.ObjectNotFoundException;

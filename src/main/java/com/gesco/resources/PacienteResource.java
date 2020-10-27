@@ -1,15 +1,12 @@
 package com.gesco.resources;
 
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,12 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.gesco.domain.Antibiotico;
-import com.gesco.domain.Funcionario;
 import com.gesco.domain.Paciente;
 import com.gesco.helpers.Helper;
-import com.gesco.services.AntibioticoService;
-import com.gesco.services.FuncionarioService;
 import com.gesco.services.PacienteService;
 
 import io.swagger.annotations.ApiOperation;

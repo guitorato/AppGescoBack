@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.gesco.domain.Funcionario;
 import com.gesco.domain.Hospital;
 import com.gesco.services.HospitalService;
 

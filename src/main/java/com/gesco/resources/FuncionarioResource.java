@@ -2,7 +2,6 @@ package com.gesco.resources;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.gesco.domain.Antibiotico;
 import com.gesco.domain.Funcionario;
-import com.gesco.domain.Hospital;
-import com.gesco.domain.Tratamento;
-import com.gesco.dto.AntibioticoDTO;
 import com.gesco.dto.FuncionarioDTO;
-import com.gesco.dto.TratamentoDTO;
-import com.gesco.dto.UserDTO;
 import com.gesco.services.FuncionarioService;
 
 @RestController

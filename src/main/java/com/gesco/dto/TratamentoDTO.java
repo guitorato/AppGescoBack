@@ -32,16 +32,12 @@ public class TratamentoDTO implements Serializable {
 		statusTratamento = obj.getStatusTratamento();
 		obs = obj.getObs();
 		medico = obj.getFuncionario().getNome();
-		antibioticos = ((TratamentoDTO) getAtbId(obj)).getAtbNomes(obj);
+		antibioticos = getAtbNomes(obj);
 		
 	}
 	
 	private List<String> getAtbNomes(Tratamento obj){
 		return obj.getAntibioticos().stream().map(atb -> atb.getNome()).collect(Collectors.toList());
-	}
-	
-	private List<Integer> getAtbId(Tratamento obj){
-		return obj.getAntibioticos().stream().map(atb -> atb.getId()).collect(Collectors.toList());
 	}
 	
 	public Integer getId() {
@@ -95,7 +91,7 @@ public class TratamentoDTO implements Serializable {
 	public List<?> getAntibioticos() {
 		return antibioticos;
 	}
-	public void setAntibioticos(List<?> antibioticos) {
+	public void setAntibioticos(List<String> antibioticos) {
 		
 		this.antibioticos = antibioticos;
 	}

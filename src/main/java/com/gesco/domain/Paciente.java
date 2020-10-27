@@ -9,20 +9,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
 
 @Entity
@@ -36,14 +28,15 @@ public class Paciente implements Serializable {
 	@Column(nullable = false)
 	private Integer registry;
 	
+	@NotEmpty(message="Preenchimento obrigatório")
 	@Column(nullable = false)
-	@NotEmpty(message = "Preenchimento do Nome do Paciente Obrigatório")
 	private String nome;
 	
 	@Column(nullable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dtNascimento;
 	
+	@NotEmpty(message="Preenchimento obrigatório")
 	@Column(nullable = false)
 	@NotEmpty(message = "Informe o sexo do Paciente")
 	private String sexo;

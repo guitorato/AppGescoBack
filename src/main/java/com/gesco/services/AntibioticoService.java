@@ -8,9 +8,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.gesco.domain.Antibiotico;
-import com.gesco.domain.Funcionario;
 import com.gesco.repositories.AntibioticoRepository;
-import com.gesco.repositories.FuncionarioRepository;
 import com.gesco.services.exceptions.DataIntegrityException;
 import com.gesco.services.exceptions.ObjectNotFoundException;
 

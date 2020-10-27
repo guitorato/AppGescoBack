@@ -1,23 +1,16 @@
 package com.gesco.services;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.hibernate.mapping.Array;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.gesco.domain.Antibiotico;
 import com.gesco.domain.Funcionario;
-import com.gesco.domain.Hospital;
-import com.gesco.domain.Paciente;
-import com.gesco.dto.UserDTO;
 import com.gesco.repositories.FuncionarioRepository;
 import com.gesco.services.exceptions.DataIntegrityException;
 import com.gesco.services.exceptions.ObjectNotFoundException;

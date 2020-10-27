@@ -1,5 +1,7 @@
 package com.gesco.config;
 
+import java.text.ParseException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -19,7 +21,7 @@ public class DevConfig {
 	private String strategy;
 
 	@Bean
-	public boolean instantiateDatabase() {
+	public boolean instantiateDatabase() throws ParseException {
 		
 		if (!"create".equals(strategy)) {
 			return false;
