@@ -1,8 +1,9 @@
 package com.gesco.domain.enums;
 
 public enum TipoFuncionario {
-
-	MEDICO(1,"MÉDICO"),
+	
+	DESENVOLVEDRO(0,"Desenvolvedor"),
+	MEDICO(1,"Médico"),
 	FARMACEUTICO(2,"Farmacêutico"),
 	INTERNACAO(3,"Internação"),
 	FARMACIA(4,"Farmácia"),
