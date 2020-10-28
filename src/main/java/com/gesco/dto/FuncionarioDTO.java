@@ -31,7 +31,7 @@ public class FuncionarioDTO implements Serializable {
 	private String crmOuCrf;
 	
 	@NotEmpty(message="Preenchimento obrigatório")
-	private String tipoFuncionario;
+	private Integer tipoFuncionario;
 	
 	@NotEmpty(message="Preenchimento obrigatório")
 	private String hospital;
@@ -45,14 +45,14 @@ public class FuncionarioDTO implements Serializable {
 		nameUser = obj.getNameUser();
 		senha = obj.getSenha();
 		crmOuCrf = obj.getCrmOuCrf();
-		tipoFuncionario = obj.getTipoFuncionario().getDescricao();
+		tipoFuncionario = obj.getTipoFuncionario().getCod();
 		hospital = obj.getHospital().getNome();
 		
 	}
 	public Integer getIdFuncionario() {
 		return idFuncionario;
 	}
-	public void setIdFuncionario(Integer idFuncionario) {
+	public void setIdFuncionario(Integer id) {
 		this.idFuncionario = idFuncionario;
 	}
 	public String getNome() {
@@ -91,10 +91,10 @@ public class FuncionarioDTO implements Serializable {
 	public void setCrmOuCrf(String crmOuCrf) {
 		this.crmOuCrf = crmOuCrf;
 	}
-	public String getTipoFuncionario() {
+	public Integer getTipoFuncionario() {
 		return tipoFuncionario;
 	}
-	public void setTipoFuncionario(String tipoFuncionario) {
+	public void setTipoFuncionario(Integer tipoFuncionario) {
 		this.tipoFuncionario = tipoFuncionario;
 	}
 	public String getHospital() {
