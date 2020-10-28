@@ -91,6 +91,17 @@ public class FuncionarioService {
 
 		return repo.findAll(pageRequest);
 	}
+	
+	public List<Funcionario> findByNome(String nome) {
+		
+		if (nome.equals("")) {
+			throw new ObjectNotFoundException(("Digite o nome do funcionário."));
+		}
+			
+		return repo.findByNome(nome);
+		 
+		
+	}
 
 	
 }

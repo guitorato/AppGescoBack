@@ -1,6 +1,7 @@
 package com.gesco.resources;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,7 +18,10 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.gesco.domain.Funcionario;
 import com.gesco.dto.FuncionarioDTO;
+import com.gesco.helpers.Helper;
 import com.gesco.services.FuncionarioService;
+
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping(value="/funcionarios")
@@ -28,7 +32,7 @@ public class FuncionarioResource {
 	
 	
 	// -------- GET PARA BUSCAR DE FUNCIONÁRIO POR ID
-	@RequestMapping(value="/{id}", method = RequestMethod.GET)
+	@RequestMapping(value="/buscar/{id}", method = RequestMethod.GET)
 	public ResponseEntity<FuncionarioDTO> findId(@PathVariable Integer id){
 		
 		Funcionario obj = service.find(id);
@@ -83,5 +87,21 @@ public class FuncionarioResource {
 		Page<FuncionarioDTO> listDto = list.map(obj -> new FuncionarioDTO(obj));
 		
 		return ResponseEntity.ok().body(listDto);
+	}
+	
+	
+	@ApiOperation(value = "BUSCA POR NOME DO FUNCIONÁRIO OU POR ID")
+	@RequestMapping(value="/{param}", method=RequestMethod.GET , produces="application/json")
+	public ResponseEntity<List<FuncionarioDTO>> findName(@PathVariable String param ){
+
+		List<Funcionario> list = null;
+		if(Helper.isNumber(param)) {
+			list = new ArrayList<Funcionario>();
+			list.add(service.find(Integer.parseInt(param)));
+		}else {
+			list = service.findByNome(param);
+		}
+		List<FuncionarioDTO> listDTO = list.stream().map(obj -> new FuncionarioDTO(obj)).collect(Collectors.toList());
+ 		return ResponseEntity.ok().body(listDTO);
 	}
 }

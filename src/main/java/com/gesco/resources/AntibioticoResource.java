@@ -1,6 +1,7 @@
 package com.gesco.resources;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,13 +12,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.gesco.domain.Antibiotico;
 import com.gesco.dto.AntibioticoDTO;
+import com.gesco.helpers.Helper;
 import com.gesco.services.AntibioticoService;
+
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping(value="/antibioticos")
@@ -28,7 +31,7 @@ public class AntibioticoResource {
 	
 	
 	//GET POR ID DO ATB
-	@RequestMapping(value="/{id}", method = RequestMethod.GET)
+	@RequestMapping(value="/buscar/{id}", method = RequestMethod.GET)
 	public ResponseEntity<AntibioticoDTO> findId(@PathVariable Integer id){
 		
 		Antibiotico obj = service.findId(id);
@@ -68,14 +71,19 @@ public class AntibioticoResource {
 	}
 	
 	
-	@RequestMapping(value ="/buscar" ,method = RequestMethod.GET)
-	public ResponseEntity<List<AntibioticoDTO>> findName(
-			@RequestParam(value = "nome", defaultValue = "") String nome){
-		
-		List<Antibiotico> list = service.findByNome(nome.toUpperCase());
-		List<AntibioticoDTO> listDTO =  list.stream().map(obj -> new AntibioticoDTO(obj)).collect(Collectors.toList());
-		
-		return ResponseEntity.ok().body(listDTO);
+	@ApiOperation(value = "BUSCA POR NOME DO ANTIBIOTICO OU POR ID")
+	@RequestMapping(value="/{param}", method=RequestMethod.GET , produces="application/json")
+	public ResponseEntity<List<AntibioticoDTO>> findName(@PathVariable String param ){
+
+		List<Antibiotico> list = null;
+		if(Helper.isNumber(param)) {
+			list = new ArrayList<Antibiotico>();
+			list.add(service.findId(Integer.parseInt(param)));
+		}else {
+			list = service.findByNome(param);
+		}
+		List<AntibioticoDTO> listDTO = list.stream().map(obj -> new AntibioticoDTO(obj)).collect(Collectors.toList());
+ 		return ResponseEntity.ok().body(listDTO);
 	}
 	
 	
