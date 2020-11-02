@@ -42,11 +42,11 @@ public class DBService {
 		Hospital hosp1 = new Hospital(null, "SPDM", "Rua bla bla", "5457", "Ocian", "Praia Grande-SP");
 		
 		
-		Funcionario farmaceutico = new Funcionario(null, "Guilherme", LocalDate.now(), "1", "guilherme", "1234","4525" ,TipoFuncionario.FARMACEUTICO, hosp1);
-		Funcionario medico = new Funcionario(null, "Matheus", LocalDate.now(), "1", "matheus", "12346", "54878", TipoFuncionario.MEDICO, hosp1);
-		Funcionario internacao = new Funcionario(null, "Daulo", LocalDate.now(), "1", "daulo", "asdfad", null, TipoFuncionario.INTERNACAO, hosp1);
-		Funcionario farmacia = new Funcionario(null, "FARMACIA", LocalDate.now(), "1", "farmacia", "123456", null, TipoFuncionario.FARMACIA, hosp1);
-		Funcionario adm = new Funcionario(null, "Administrador", LocalDate.now(), "1", "admin", "admin", null, TipoFuncionario.ADMINISTRADOR, hosp1);
+		Funcionario farmaceutico = new Funcionario(null, "Guilherme", LocalDate.now(), 1, "guilherme", "1234","4525" ,TipoFuncionario.FARMACEUTICO, hosp1);
+		Funcionario medico = new Funcionario(null, "Matheus", LocalDate.now(), 1, "matheus", "12346", "54878", TipoFuncionario.MEDICO, hosp1);
+		Funcionario internacao = new Funcionario(null, "Daulo", LocalDate.now(), 1, "daulo", "asdfad", null, TipoFuncionario.INTERNACAO, hosp1);
+		Funcionario farmacia = new Funcionario(null, "FARMACIA", LocalDate.now(), 1, "farmacia", "123456", null, TipoFuncionario.FARMACIA, hosp1);
+		Funcionario adm = new Funcionario(null, "Administrador", LocalDate.now(), 1, "admin", "admin", null, TipoFuncionario.ADMINISTRADOR, hosp1);
 		
 		hosp1.getFuncionarios().addAll(Arrays.asList(farmaceutico,medico,internacao,farmacia,adm));
 		

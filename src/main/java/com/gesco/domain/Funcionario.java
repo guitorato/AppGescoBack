@@ -42,7 +42,7 @@ public class Funcionario implements Serializable {
 	private LocalDate dtNascimento;
 	
 	@Column(nullable = false)
-	private String sexo;
+	private Integer sexo;
 	
 	@Column(nullable = false, unique=true , length = 50)
 	private String nameUser;
@@ -74,7 +74,7 @@ public class Funcionario implements Serializable {
 	
 	public Funcionario() {}
 
-	public Funcionario(Integer idFuncionario, String nome, LocalDate dtNascimento, String sexo, String nameUser,
+	public Funcionario(Integer idFuncionario, String nome, LocalDate dtNascimento, Integer sexo, String nameUser,
 			String senha, String crmOuCrf, TipoFuncionario tipoFuncionario, Hospital hospital) {
 		super();
 		this.idFuncionario = idFuncionario;
@@ -117,11 +117,11 @@ public class Funcionario implements Serializable {
 		this.dtNascimento = dtNascimento;
 	}
 
-	public String getSexo() {
+	public Integer getSexo() {
 		return sexo;
 	}
 
-	public void setSexo(String sexo) {
+	public void setSexo(Integer sexo) {
 		this.sexo = sexo;
 	}
 

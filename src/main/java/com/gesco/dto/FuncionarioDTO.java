@@ -20,7 +20,7 @@ public class FuncionarioDTO implements Serializable {
 	private LocalDate dtNascimento;
 	
 	@NotEmpty(message="Preenchimento obrigatório")
-	private String sexo;
+	private Integer sexo;
 	
 	@NotEmpty(message="Preenchimento obrigatório")
 	private String nameUser;
@@ -67,10 +67,10 @@ public class FuncionarioDTO implements Serializable {
 	public void setDtNascimento(LocalDate dtNascimento) {
 		this.dtNascimento = dtNascimento;
 	}
-	public String getSexo() {
+	public Integer getSexo() {
 		return sexo;
 	}
-	public void setSexo(String sexo) {
+	public void setSexo(Integer sexo) {
 		this.sexo = sexo;
 	}
 	public String getNameUser() {
