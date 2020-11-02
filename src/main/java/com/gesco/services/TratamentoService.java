@@ -80,6 +80,15 @@ public class TratamentoService {
 				 
 				
 			}
+		 
+		// -------- MÉTODO PARA BUSCAR TRATAMENTO PELO STATUS DO TRATAMENTO
+				 public List<Tratamento> findStatus(Integer status) {
+						
+					 	
+						return repo.findByStatus(status);
+						 
+						
+					}
 	 
 
 }

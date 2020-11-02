@@ -105,4 +105,14 @@ public class TratamentoResource {
 		List<TratamentoDTO> listDTO = list.stream().map(obj -> new TratamentoDTO(obj)).collect(Collectors.toList());
  		return ResponseEntity.ok().body(listDTO);
 	}
+	
+	@ApiOperation(value = "BUSCAR TRATAMENTO POR Status")
+	@RequestMapping(value="/{status}", method = RequestMethod.GET, produces="application/json")
+	public ResponseEntity<List<TratamentoDTO>> findStatus(@PathVariable Integer status){
+		
+		List<Tratamento> list = service.findStatus(status);
+		List<TratamentoDTO> listDTO = list.stream().map(obj -> new TratamentoDTO(obj)).collect(Collectors.toList());
+		
+		return ResponseEntity.ok().body(listDTO);
+	}
 }

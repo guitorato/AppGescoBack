@@ -16,5 +16,8 @@ public interface TratamentoRepository extends JpaRepository<Tratamento, Integer>
 	
 	@Query("SELECT t FROM Tratamento t, Paciente p WHERE t.paciente=p.id AND p.registry = :registry")
 	List<Tratamento> findByRegistry (Integer registry);
+	
+	@Query("SELECT t FROM Tratamento t WHERE t.statusTratamento = :status")
+	List<Tratamento> findByStatus (Integer status);
 
 }
