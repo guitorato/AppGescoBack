@@ -12,6 +12,9 @@ import com.gesco.domain.Tratamento;
 public interface TratamentoRepository extends JpaRepository<Tratamento, Integer> {
 	
 	@Query("SELECT t FROM Tratamento t, Paciente p WHERE t.paciente=p.id AND p.nome LIKE %:nome%")
-	List<Tratamento> findByPaciente (String nome);
+	List<Tratamento> findByNome (String nome);
+	
+	@Query("SELECT t FROM Tratamento t, Paciente p WHERE t.paciente=p.id AND p.registry = :registry")
+	List<Tratamento> findByRegistry (Integer registry);
 
 }

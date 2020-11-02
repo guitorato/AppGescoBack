@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
+import com.gesco.domain.Paciente;
 import com.gesco.domain.Tratamento;
 import com.gesco.repositories.TratamentoRepository;
 import com.gesco.services.exceptions.DataIntegrityException;
@@ -29,6 +30,7 @@ public class TratamentoService {
 	
 	public Tratamento insert(Tratamento obj) {
 		obj.setId(null);
+		
 		return repo.save(obj);
 	}
 	
@@ -58,9 +60,26 @@ public class TratamentoService {
 		return repo.findAll(pageRequest);
 	}
 	
-	public List<Tratamento> findPaciente(String nome) {
-	
-		 return repo.findByPaciente(nome);
-	}
+	// -------- MÉTODO PARA BUSCAR TODOS OS  PACIENTE PELO NOME 
+		public List<Tratamento> findName(String nome) {
+			
+			if (nome.equals("")) {
+				throw new ObjectNotFoundException(("Digite o nome do paciente."));
+			}
+				
+			return repo.findByNome(nome);
+			 
+			
+		}
+		
+		// -------- MÉTODO PARA BUSCAR TODOS OS  PACIENTE PELO REGISTRO
+		 public List<Tratamento> findRegistry(Integer registry) {
+				
+			 	
+				return repo.findByRegistry(registry);
+				 
+				
+			}
+	 
 
 }
