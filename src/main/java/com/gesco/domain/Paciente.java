@@ -36,10 +36,8 @@ public class Paciente implements Serializable {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dtNascimento;
 	
-	@NotEmpty(message="Preenchimento obrigatório")
 	@Column(nullable = false)
-	@NotEmpty(message = "Informe o sexo do Paciente")
-	private String sexo;
+	private Integer sexo;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="paciente")
@@ -47,7 +45,7 @@ public class Paciente implements Serializable {
 	
 	public Paciente() {}
 
-	public Paciente(Integer id, Integer registry, String nome, LocalDate dtNascimento, String sexo) {
+	public Paciente(Integer id, Integer registry, String nome, LocalDate dtNascimento, Integer sexo) {
 		super();
 		this.id = id;
 		this.registry = registry;
@@ -91,11 +89,11 @@ public class Paciente implements Serializable {
 		this.dtNascimento = dtNascimento;
 	}
 
-	public String getSexo() {
+	public Integer getSexo() {
 		return sexo;
 	}
 
-	public void setSexo(String sexo) {
+	public void setSexo(Integer sexo) {
 		this.sexo = sexo;
 	}
 

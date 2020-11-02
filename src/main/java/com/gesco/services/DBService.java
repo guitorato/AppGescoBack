@@ -42,11 +42,11 @@ public class DBService {
 		Hospital hosp1 = new Hospital(null, "SPDM", "Rua bla bla", "5457", "Ocian", "Praia Grande-SP");
 		
 		
-		Funcionario farmaceutico = new Funcionario(null, "Guilherme", LocalDate.now(), "M", "guilherme", "1234","4525" ,TipoFuncionario.FARMACEUTICO, hosp1);
-		Funcionario medico = new Funcionario(null, "Matheus", LocalDate.now(), "M", "matheus", "12346", "54878", TipoFuncionario.MEDICO, hosp1);
-		Funcionario internacao = new Funcionario(null, "Daulo", LocalDate.now(), "M", "daulo", "asdfad", null, TipoFuncionario.INTERNACAO, hosp1);
-		Funcionario farmacia = new Funcionario(null, "FARMACIA", LocalDate.now(), "M", "farmacia", "123456", null, TipoFuncionario.FARMACIA, hosp1);
-		Funcionario adm = new Funcionario(null, "Administrador", LocalDate.now(), "M", "admin", "admin", null, TipoFuncionario.ADMINISTRADOR, hosp1);
+		Funcionario farmaceutico = new Funcionario(null, "Guilherme", LocalDate.now(), "1", "guilherme", "1234","4525" ,TipoFuncionario.FARMACEUTICO, hosp1);
+		Funcionario medico = new Funcionario(null, "Matheus", LocalDate.now(), "1", "matheus", "12346", "54878", TipoFuncionario.MEDICO, hosp1);
+		Funcionario internacao = new Funcionario(null, "Daulo", LocalDate.now(), "1", "daulo", "asdfad", null, TipoFuncionario.INTERNACAO, hosp1);
+		Funcionario farmacia = new Funcionario(null, "FARMACIA", LocalDate.now(), "1", "farmacia", "123456", null, TipoFuncionario.FARMACIA, hosp1);
+		Funcionario adm = new Funcionario(null, "Administrador", LocalDate.now(), "1", "admin", "admin", null, TipoFuncionario.ADMINISTRADOR, hosp1);
 		
 		hosp1.getFuncionarios().addAll(Arrays.asList(farmaceutico,medico,internacao,farmacia,adm));
 		
@@ -59,10 +59,10 @@ public class DBService {
 		antibioticoRepository.saveAll(Arrays.asList(atb1,atb2));
 		
 		
-		Paciente pc1 = new Paciente(null, 455455, "Carlos Eduardo", LocalDate.now(), "Masculino");
-		Paciente pc2 = new Paciente(null, 48967867, "Ângelo", LocalDate.now(), "Outros");
-		Paciente pc3 = new Paciente(null, 478767, "Guilherme", LocalDate.now(), "Outros");
-		Paciente pc4 = new Paciente(null, 456737, "Pedro", LocalDate.now(), "Outros");
+		Paciente pc1 = new Paciente(null, 455455, "Carlos Eduardo", LocalDate.now(), 1);
+		Paciente pc2 = new Paciente(null, 48967867, "Ângelo", LocalDate.now(), 1);
+		Paciente pc3 = new Paciente(null, 478767, "Guilherme", LocalDate.now(), 1);
+		Paciente pc4 = new Paciente(null, 456737, "Pedro", LocalDate.now(), 1);
 		
 		pacienteRepository.saveAll(Arrays.asList(pc1,pc2,pc3,pc4));
 		
