@@ -11,12 +11,13 @@ public class TratamentoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
+	private Integer registry;
 	private String paciente;
 	private String diagnostico;
 	private LocalDate inicio_tratamento;
 	private LocalDate fim_tratamento;
 	private double doseDiario;
-	private String statusTratamento;
+	private Integer statusTratamento;
 	private String medico;
 	private String obs;
 	private List<?> antibioticos;
@@ -24,12 +25,13 @@ public class TratamentoDTO implements Serializable {
 	public TratamentoDTO () {}
 	public TratamentoDTO (Tratamento obj) {
 		id = obj.getId();
+		registry = obj.getPaciente().getRegistry();
 		paciente = obj.getPaciente().getNome();
 		diagnostico = obj.getDiagnostico();
 		inicio_tratamento = obj.getInicio_tratamento();
 		fim_tratamento = obj.getFim_tratamento();
 		doseDiario = obj.getDoseDiario();
-		statusTratamento = obj.getStatusTratamento();
+		statusTratamento = obj.getStatusTratamento().getCod();
 		obs = obj.getObs();
 		medico = obj.getFuncionario().getNome();
 		antibioticos = getAtbNomes(obj);
@@ -45,6 +47,13 @@ public class TratamentoDTO implements Serializable {
 	}
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	
+	public Integer getRegistry() {
+		return registry;
+	}
+	public void setRegistry(Integer registry) {
+		this.registry = registry;
 	}
 	public String getPaciente() {
 		return paciente;
@@ -76,10 +85,10 @@ public class TratamentoDTO implements Serializable {
 	public void setDoseDiario(double doseDiario) {
 		this.doseDiario = doseDiario;
 	}
-	public String getStatusTratamento() {
+	public Integer getStatusTratamento() {
 		return statusTratamento;
 	}
-	public void setStatusTratamento(String statusTratamento) {
+	public void setStatusTratamento(Integer statusTratamento) {
 		this.statusTratamento = statusTratamento;
 	}
 	public String getObs() {
