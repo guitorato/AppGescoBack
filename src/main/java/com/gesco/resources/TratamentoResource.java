@@ -107,7 +107,7 @@ public class TratamentoResource {
 	}
 	
 	@ApiOperation(value = "BUSCAR TRATAMENTO POR Status")
-	@RequestMapping(value="/{status}", method = RequestMethod.GET, produces="application/json")
+	@RequestMapping(value="/status/{status}", method = RequestMethod.GET, produces="application/json")
 	public ResponseEntity<List<TratamentoDTO>> findStatus(@PathVariable Integer status){
 		
 		List<Tratamento> list = service.findStatus(status);
