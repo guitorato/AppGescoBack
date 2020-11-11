@@ -78,8 +78,8 @@ public class DBService {
 		Tratamento trat9 = new Tratamento(null, "Doença6", LocalDate.now(), LocalDate.now(), 2.5, StatusTratamento.RECUSADO, "Paciente Alérgico", medico, pc4);
 
 		
-		//atb1.getTratamentos().add(trat1);
-		//atb2.getTratamentos().addAll(Arrays.asList(trat1,trat2));
+		atb1.getTratamentos().add(trat1);
+		atb2.getTratamentos().addAll(Arrays.asList(trat1,trat2));
 		trat1.getAntibioticos().add(atb1);
 		trat2.getAntibioticos().addAll(Arrays.asList(atb1,atb2));
 		trat3.getAntibioticos().addAll(Arrays.asList(atb2));
