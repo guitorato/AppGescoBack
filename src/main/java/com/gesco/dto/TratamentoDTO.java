@@ -13,6 +13,7 @@ public class TratamentoDTO implements Serializable {
 	private Integer id;
 	private Integer registry;
 	private String paciente;
+	private Integer pacienteId;
 	private String diagnostico;
 	private LocalDate inicio_tratamento;
 	private LocalDate fim_tratamento;
@@ -26,6 +27,7 @@ public class TratamentoDTO implements Serializable {
 	public TratamentoDTO () {}
 	public TratamentoDTO (Tratamento obj) {
 		id = obj.getId();
+		pacienteId = obj.getPaciente().getId();
 		registry = obj.getPaciente().getRegistry();
 		paciente = obj.getPaciente().getNome();
 		diagnostico = obj.getDiagnostico();
@@ -122,6 +124,14 @@ public class TratamentoDTO implements Serializable {
 	public void setAntibioticosId(List<?> antibioticosId) {
 		this.antibioticosId = antibioticosId;
 	}
+	public Integer getPacienteId() {
+		return pacienteId;
+	}
+	public void setPacienteId(Integer pacienteId) {
+		this.pacienteId = pacienteId;
+	}
+	
+	
 	
 	
 	
