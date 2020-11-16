@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.gesco.domain.Funcionario;
 import com.gesco.domain.Tratamento;
 import com.gesco.dto.FuncionarioDTO;
 import com.gesco.dto.TratamentoDTO;
 import com.gesco.helpers.Helper;
+import com.gesco.repositories.TratamentoRepository;
 import com.gesco.services.TratamentoService;
 
 import io.swagger.annotations.ApiOperation;
@@ -31,6 +31,9 @@ public class TratamentoResource {
 	
 	@Autowired
 	private TratamentoService service;
+	
+	@Autowired
+	private TratamentoRepository repo;
 	
 	
 	@ApiOperation(value = "BUSCAR TRATAMENTO POR ID")
@@ -115,4 +118,14 @@ public class TratamentoResource {
 		
 		return ResponseEntity.ok().body(listDTO);
 	}
+	
+	@ApiOperation(value = "ATUALIZAR TRATAMENTO")
+	@RequestMapping(value="/atualizar/{id}/{status}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> updateStatus(@PathVariable Integer id , @PathVariable Integer status){
+		
+		service.updanteStatus(id, status);
+		
+		return ResponseEntity.noContent().build();
+	}
+	
 }

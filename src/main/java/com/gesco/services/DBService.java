@@ -12,7 +12,6 @@ import com.gesco.domain.Funcionario;
 import com.gesco.domain.Hospital;
 import com.gesco.domain.Paciente;
 import com.gesco.domain.Tratamento;
-import com.gesco.domain.enums.StatusTratamento;
 import com.gesco.domain.enums.TipoFuncionario;
 import com.gesco.repositories.AntibioticoRepository;
 import com.gesco.repositories.FuncionarioRepository;
@@ -67,15 +66,15 @@ public class DBService {
 		
 		pacienteRepository.saveAll(Arrays.asList(pc1,pc2,pc3,pc4));
 		
-		Tratamento trat1 = new Tratamento(null, "Fimose", LocalDate.now(), LocalDate.now(), 2.5, StatusTratamento.PENDENTE, "Paciente Alérgico Cefalotina", medico, pc1);
-		Tratamento trat2 = new Tratamento(null, "Hemorroida", LocalDate.now(), LocalDate.now(), 2.5, StatusTratamento.PENDENTE, "Paciente Alérgico Ceftriaxona", medico, pc2);
-		Tratamento trat3 = new Tratamento(null, "Disenteria", LocalDate.now(), LocalDate.now(), 2.5, StatusTratamento.PENDENTE, "Paciente Alérgico", medico, pc2);
-		Tratamento trat4 = new Tratamento(null, "Doença1", LocalDate.now(), LocalDate.now(), 2.5, StatusTratamento.APROVADO, "Paciente Alérgico", medico, pc2);
-		Tratamento trat5 = new Tratamento(null, "Doença2", LocalDate.now(), LocalDate.now(), 2.5, StatusTratamento.APROVADO, "Paciente Alérgico", medico, pc3);
-		Tratamento trat6 = new Tratamento(null, "Doença3", LocalDate.now(), LocalDate.now(), 2.5, StatusTratamento.APROVADO, "Paciente Alérgico", medico, pc4);
-		Tratamento trat7 = new Tratamento(null, "Doença4", LocalDate.now(), LocalDate.now(), 2.5, StatusTratamento.RECUSADO, "Paciente Alérgico", medico, pc1);
-		Tratamento trat8 = new Tratamento(null, "Doença5", LocalDate.now(), LocalDate.now(), 2.5, StatusTratamento.RECUSADO, "Paciente Alérgico", medico, pc3);
-		Tratamento trat9 = new Tratamento(null, "Doença6", LocalDate.now(), LocalDate.now(), 2.5, StatusTratamento.RECUSADO, "Paciente Alérgico", medico, pc4);
+		Tratamento trat1 = new Tratamento(null, "Fimose", LocalDate.now(), LocalDate.now(), 2.5, 0, "Paciente Alérgico Cefalotina", medico, pc1);
+		Tratamento trat2 = new Tratamento(null, "Hemorroida", LocalDate.now(), LocalDate.now(), 2.5, 0, "Paciente Alérgico Ceftriaxona", medico, pc2);
+		Tratamento trat3 = new Tratamento(null, "Disenteria", LocalDate.now(), LocalDate.now(), 2.5, 0, "Paciente Alérgico", medico, pc2);
+		Tratamento trat4 = new Tratamento(null, "Doença1", LocalDate.now(), LocalDate.now(), 2.5, 1, "Paciente Alérgico", medico, pc2);
+		Tratamento trat5 = new Tratamento(null, "Doença2", LocalDate.now(), LocalDate.now(), 2.5, 1, "Paciente Alérgico", medico, pc3);
+		Tratamento trat6 = new Tratamento(null, "Doença3", LocalDate.now(), LocalDate.now(), 2.5, 1, "Paciente Alérgico", medico, pc4);
+		Tratamento trat7 = new Tratamento(null, "Doença4", LocalDate.now(), LocalDate.now(), 2.5, 2, "Paciente Alérgico", medico, pc1);
+		Tratamento trat8 = new Tratamento(null, "Doença5", LocalDate.now(), LocalDate.now(), 2.5, 2, "Paciente Alérgico", medico, pc3);
+		Tratamento trat9 = new Tratamento(null, "Doença6", LocalDate.now(), LocalDate.now(), 2.5, 2, "Paciente Alérgico", medico, pc4);
 
 		
 		atb1.getTratamentos().add(trat1);

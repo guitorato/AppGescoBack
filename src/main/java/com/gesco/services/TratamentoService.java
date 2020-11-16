@@ -10,7 +10,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import com.gesco.domain.Paciente;
 import com.gesco.domain.Tratamento;
 import com.gesco.repositories.TratamentoRepository;
 import com.gesco.services.exceptions.DataIntegrityException;
@@ -38,6 +37,7 @@ public class TratamentoService {
 		find(obj.getId());
 		return repo.save(obj);
 	}
+	
 	
 	public void delete (Integer id) {
 		find(id);
@@ -89,6 +89,9 @@ public class TratamentoService {
 						 
 						
 					}
-	 
 
+		public void updanteStatus (Integer id, Integer status) {
+			repo.updateStatus(id, status);
+		}
+			
 }

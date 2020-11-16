@@ -34,7 +34,7 @@ public class TratamentoDTO implements Serializable {
 		inicio_tratamento = obj.getInicio_tratamento();
 		fim_tratamento = obj.getFim_tratamento();
 		doseDiario = obj.getDoseDiario();
-		statusTratamento = obj.getStatusTratamento().getCod();
+		statusTratamento = obj.getStatusTratamento();
 		obs = obj.getObs();
 		medico = obj.getFuncionario().getNome();
 		antibioticos = getAtbNomes(obj);

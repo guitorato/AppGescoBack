@@ -20,7 +20,6 @@ import javax.persistence.ManyToOne;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.gesco.domain.enums.StatusTratamento;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -52,7 +51,7 @@ public class Tratamento implements Serializable{
 	@Column(nullable = false)
 	private double doseDiario;
 	
-	@Column(nullable = false)
+	
 	private Integer statusTratamento = 0;
 	
 	@Column(nullable = false)
@@ -82,13 +81,13 @@ public class Tratamento implements Serializable{
 
 
 	public Tratamento(Integer id, String diagnostico, LocalDate inicio_tratamento, LocalDate fim_tratamento,
-			double doseDiario, StatusTratamento statusTratamento, String obs, Funcionario funcionario, Paciente paciente) {
+			double doseDiario, Integer statusTratamento, String obs, Funcionario funcionario, Paciente paciente) {
 		this.id = id;
 		this.diagnostico = diagnostico;
 		this.inicio_tratamento = inicio_tratamento;
 		this.fim_tratamento = fim_tratamento;
 		this.doseDiario = doseDiario;
-		this.statusTratamento = statusTratamento.getCod();
+		this.statusTratamento = statusTratamento;
 		this.obs = obs;
 		this.funcionario = funcionario;
 		this.paciente = paciente;
@@ -134,14 +133,18 @@ public class Tratamento implements Serializable{
 	public void setDoseDiario(double doseDiario) {
 		this.doseDiario = doseDiario;
 	}
-
-	public StatusTratamento getStatusTratamento() {
-		return StatusTratamento.toEnum(statusTratamento);
+	
+	public Integer getStatusTratamento() {
+		return statusTratamento;
 	}
 
-	public void setStatusTratamento(StatusTratamento statusTratamento) {
-		this.statusTratamento = statusTratamento.getCod();
+
+
+	public void setStatusTratamento(Integer statusTratamento) {
+		this.statusTratamento = statusTratamento;
 	}
+
+
 
 	public String getObs() {
 		return obs;
