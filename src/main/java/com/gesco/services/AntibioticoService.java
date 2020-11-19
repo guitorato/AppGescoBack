@@ -5,9 +5,13 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.gesco.domain.Antibiotico;
+import com.gesco.domain.Funcionario;
 import com.gesco.repositories.AntibioticoRepository;
 import com.gesco.services.exceptions.DataIntegrityException;
 import com.gesco.services.exceptions.ObjectNotFoundException;
@@ -66,6 +70,16 @@ public class AntibioticoService {
 	}else
 		return repo.findByNome(nome);
 	}
+	
+	// -------- MÉTODO PARA BUSCAR DE TODOS OS CADASTROS, COM FILTRO DE QUANTIDADES A SEREM EXIBIDAS, ORDENAÇÃO 
+		public Page<Antibiotico> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
+			PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
+			
+
+			return repo.findAll(pageRequest);
+		}
+		
+	
 
 
 }
