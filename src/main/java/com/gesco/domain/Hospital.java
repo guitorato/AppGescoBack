@@ -1,12 +1,17 @@
 package com.gesco.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -26,6 +31,10 @@ public class Hospital implements Serializable {
 	
 	@Column(name="ds_hospital",nullable = false , length = 100)
 	private String descricao;
+	
+	@JsonIgnore 
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "hospital", fetch = FetchType.EAGER)
+	private List<Funcionario> funcionarios = new ArrayList<>();
 
 	public Hospital () {}
 	public Hospital(String nome, String descricao) {
@@ -49,6 +58,13 @@ public class Hospital implements Serializable {
 	}
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+	
+	public List<Funcionario> getFuncionarios() {
+		return funcionarios;
+	}
+	public void setFuncionarios(List<Funcionario> funcionarios) {
+		this.funcionarios = funcionarios;
 	}
 	
 	@Override
