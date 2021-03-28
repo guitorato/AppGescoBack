@@ -25,8 +25,15 @@ public class HospitalService {
 	}
 	
 	public Hospital insert(Hospital obj) {
-		obj.setId(null);
-		return repo.save(obj);
+		
+		if (repo.findByNome(obj.getNome()).isEmpty()) {
+			
+			obj.setId(null);
+			return repo.save(obj);
+			
+		}else {
+			throw new ObjectNotFoundException("Já existe um hospital cadastrado com esse Nome!");
+		}
 	}
 	
 	public Hospital update (Hospital obj) {
