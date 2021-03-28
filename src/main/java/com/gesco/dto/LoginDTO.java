@@ -4,12 +4,16 @@ import javax.validation.constraints.NotEmpty;
 
 import com.gesco.domain.Funcionario;
 
+import io.swagger.annotations.ApiModelProperty;
+
 public class LoginDTO {
 	
 	@NotEmpty(message="Preenchimento obrigatório")
+	@ApiModelProperty(value = "Login (Usuario) no sistema (cpf, telefone, apelido)", example = "masteruser")
 	private String login;
 	
 	@NotEmpty(message="Preenchimento obrigatório")
+	@ApiModelProperty(value = "Senha do usuario", example = "senh@Fort#")
 	private String senha;
 	
 	public LoginDTO() {
