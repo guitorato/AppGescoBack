@@ -12,5 +12,7 @@ import com.gesco.domain.Funcionario;
 public interface FuncionarioRepository extends JpaRepository<Funcionario, Integer> {
 	
 	Optional<Funcionario> findByLogin (String login);
+	
+	Optional<Funcionario> deleteByLogin(String login);
 
 }
