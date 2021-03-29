@@ -17,6 +17,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.gesco.domain.Funcionario;
 import com.gesco.dto.FuncionarioDTO;
+import com.gesco.repositories.FuncionarioRepository;
 import com.gesco.services.FuncionarioService;
 
 @RestController
@@ -25,6 +26,9 @@ public class FuncionarioResource {
 	
 	@Autowired
 	private FuncionarioService service;
+	
+	@Autowired
+	private FuncionarioRepository repo;
 
 
 	// -------- MÉTODO DE DELETAR O CADASTRO DO FUNCIONÁRIO
@@ -37,9 +41,9 @@ public class FuncionarioResource {
 		
 		
 		// -------- MÉTODO PUT PARA ATUALIZAR O CADASTRO DO FUNCIONÁRIO
-		@RequestMapping(value="/{id}", method = RequestMethod.PUT)
-		public ResponseEntity<Void> update(@RequestBody Funcionario obj , @PathVariable Integer id){
-			obj.setId(id);
+		@RequestMapping(value="/{login}", method = RequestMethod.PUT)
+		public ResponseEntity<Void> update(@RequestBody Funcionario obj , @PathVariable String login){
+			obj.setId(repo.findByLogin(login).get().getId());
 			obj = service.update(obj);
 			return ResponseEntity.noContent().build();
 		}
