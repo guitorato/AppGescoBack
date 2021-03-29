@@ -13,10 +13,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.gesco.domain.enums.TipoFuncionario;
 
 @Entity
 @Table(name="Funcionarios")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Funcionario implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -28,10 +30,10 @@ public class Funcionario implements Serializable {
 	@Column(name="nm_funcionario",nullable = false , length = 100 )
 	private String nome;
 	
-	@Column(name="nm_login",nullable = false , length = 50 )
+	@Column(name="nm_login",nullable = false , length = 30, unique = true )
 	private String login;
 	
-	@Column(name="ds_senha",nullable = false , length = 20 )
+	@Column(name="ds_senha",nullable = false)
 	private String senha;
 	
 	@Column(name="cd_conselho",nullable = true , length = 10 )
@@ -40,7 +42,6 @@ public class Funcionario implements Serializable {
 	@Column(name="cd_tipo_funcionario",nullable = false)
 	private Integer tipoFuncionario;
 	
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="hospital_id") 
 	private Hospital hospital;
