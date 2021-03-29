@@ -13,6 +13,8 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Intege
 	
 	Optional<Funcionario> findByLogin (String login);
 	
+	Funcionario findByLoginLike (String login);
+	
 	Optional<Funcionario> deleteByLogin(String login);
 
 }
