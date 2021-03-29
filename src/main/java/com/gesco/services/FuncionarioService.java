@@ -39,8 +39,13 @@ public class FuncionarioService {
 		
 		// -------- MÉTODO PARA ATUALIZAR O CADASTRO DO FUNCIONÁRIO
 		public Funcionario update (Funcionario obj) {
-			repo.findById(obj.getId());
-			return repo.save(obj);
+			
+			if(repo.findByLogin(obj.getLogin()).isPresent()) {
+				repo.findByLoginLike(obj.getLogin());
+				return repo.save(obj);
+			}else{
+				throw new ObjectNotFoundException(("Login incorreto"));
+			}
 		}
 		
 		
