@@ -34,7 +34,7 @@ public class Hospital implements Serializable {
 	@JsonIgnore 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "hospital", fetch = FetchType.EAGER)
 	private List<Funcionario> funcionarios = new ArrayList<>();
-
+	
 	public Hospital () {}
 	public Hospital(String nome, String descricao) {
 		this.nome = nome;
