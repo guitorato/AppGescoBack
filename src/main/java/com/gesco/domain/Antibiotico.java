@@ -53,13 +53,14 @@ public class Antibiotico implements Serializable {
 	public Antibiotico () {}
 	public Antibiotico(String nome, String nomeComercial, LocalDate dataValidade, String lote, Integer tipoAplicacao,
 			Funcionario funcionario) {
-		super();
+		this.nome = nome;
 		this.nomeComercial = nomeComercial;
 		this.dataValidade = dataValidade;
 		this.lote = lote;
 		this.tipoAplicacao = tipoAplicacao;
 		this.funcionario = funcionario;
 	}
+
 	public Integer getId() {
 		return id;
 	}
