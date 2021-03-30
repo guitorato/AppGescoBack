@@ -19,7 +19,8 @@ public interface PacienteRepository extends JpaRepository<Paciente, Integer> {
 	
 	@Query("SELECT p FROM Paciente p WHERE p.registro = :registro AND p.statusPaciente = true")
 	List<Paciente> findByRegistro(Integer registro);
-	 
+	
+	@Transactional
 	Optional<Paciente> findByRegistroLike (Integer registro);
 	
 	@Transactional

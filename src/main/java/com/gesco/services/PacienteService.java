@@ -11,6 +11,7 @@ import com.gesco.domain.Paciente;
 import com.gesco.helpers.Helper;
 import com.gesco.repositories.PacienteRepository;
 import com.gesco.services.exceptions.DataIntegrityException;
+import com.gesco.services.exceptions.NoSuchElementException;
 import com.gesco.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -71,26 +72,31 @@ public class PacienteService {
 	
 	// -------- MÉTODO PARA DELETAR PACIENTE
 		public void delete (Integer registro) {
-			if(repo.findByRegistroLike(registro).isPresent()) {
-				try {
+			if(repo.findByRegistroLike(registro).isEmpty()) {
+				
+				throw new ObjectNotFoundException("Registro de Paciente não encontrado");
+			}else {
+				
+               try {
 					
 					repo.delete(repo.findByRegistroLike(registro).get());
 				}catch (DataIntegrityViolationException e) {
 					throw new DataIntegrityException("Não é possível excluir");
 				}
-			}else {
-				throw new ObjectNotFoundException(("Registro de Paciente não encontrado"));
 			}
+			
 		}
 		
 		// -------- MÉTODO PARA ATUALIZAR PACIENTE
 		public Paciente update (Paciente obj) {
-			if(repo.findByRegistroLike(obj.getRegistro()).isPresent()) {
-				
-				return repo.save(obj);
-			}else{
+			
+			
+			if(repo.findByRegistro(obj.getRegistro()).isEmpty()){
 				
 				throw new ObjectNotFoundException(("Registro incorreto"));
+			}else{
+				
+				return repo.save(obj);
 			}
 		}
 			
