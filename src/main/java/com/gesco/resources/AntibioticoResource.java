@@ -72,7 +72,7 @@ public class AntibioticoResource {
 			list = new ArrayList<Antibiotico>();
 			list.add(service.findId(Integer.parseInt(param)));
 		}else {
-			list = service.findByNome(param);
+			list = service.findByNome(param.toUpperCase());
 		}
 		List<AntibioticoDTO> listDTO = list.stream().map(obj -> new AntibioticoDTO(obj)).collect(Collectors.toList());
  		return ResponseEntity.ok().body(listDTO);

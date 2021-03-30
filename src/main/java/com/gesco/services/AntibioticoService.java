@@ -29,12 +29,16 @@ public class AntibioticoService {
 	@ApiOperation(value = "INSERE UM NOVO Antibiótico")
 	public Antibiotico insert(Antibiotico obj) {
 		obj.setId(null);
+		obj.setNome(obj.getNome().toUpperCase());
+		obj.setNomeComercial(obj.getNomeComercial().toUpperCase());
 		return repo.save(obj);
 	}
 	
 	@ApiOperation(value = "ATUALIZA UM Antibiótico")
 	public Antibiotico update (Antibiotico obj) {
 		findId(obj.getId());
+		obj.setNome(obj.getNome().toUpperCase());
+		obj.setNomeComercial(obj.getNomeComercial().toUpperCase());
 		return repo.save(obj);
 	}
 	
@@ -57,21 +61,20 @@ public class AntibioticoService {
 	
 	@ApiOperation(value = "BUSCAR PELO DOIS NOMES DO Antibiótico")
 	public List<Antibiotico> findByNome(String nome) {
-		
 	
-		if(repo.findByNomeLike(nome).isEmpty()) {
-			if(repo.findByNomeComercialLike(nome).isEmpty()) {
+		if(repo.findByNome(nome).isEmpty()) {
+			if(repo.findByNomeComercial(nome).isEmpty()) {
 				
 				throw new ObjectNotFoundException("Antibiótico Não Encontrado");
 				
 			}else {
 				
-				return repo.findByNomeComercialLike(nome);
+				return repo.findByNomeComercial(nome);
 			}
 		
 		}else {
 			
-		  return repo.findByNomeLike(nome);
+		  return repo.findByNome(nome);
 		}
 
 	}

@@ -69,9 +69,9 @@ public class DBService {
 		
 		
 		Antibiotico atb1 = new Antibiotico("CEFTRIAXONA", "ROCEFIN", LocalDate.now(), "45785-1", 1 , func3);
-		Antibiotico atb2 = new Antibiotico("CEFALOTINA", "KEFLIN", LocalDate.now(), "78555", 1 , func3);
-		Antibiotico atb3 = new Antibiotico("CIPROFLOXACINO", "CIPRO", LocalDate.now(), "A575SD", 1 , func3);
-		Antibiotico atb4 = new Antibiotico("METRONIDAZOL", "FLAGYL", LocalDate.now(), "BF8217", 1 , func3);
+		Antibiotico atb2 = new Antibiotico("CEFALOTINA", "KEFLIN", LocalDate.now(), "78555", 2 , func3);
+		Antibiotico atb3 = new Antibiotico("CIPROFLOXACINO", "CIPRO", LocalDate.now(), "A575SD", 3 , func3);
+		Antibiotico atb4 = new Antibiotico("METRONIDAZOL", "FLAGYL", LocalDate.now(), "BF8217", 4 , func3);
 		
 		antibioticoRepository.save(atb1);
 		antibioticoRepository.save(atb2);
