@@ -39,6 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			"/api/paciente/**",
 			"/api/funcionario/**",
 			"/api/login/**",
+			"/api/antibiotico/**",
 			"/api/hospital/**"
 			
 			
@@ -48,6 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			"/api/paciente/**",
 			"/api/funcionario/**",
 			"/api/login/**",
+			"/api/antibiotico/**",
 			"/api/hospital/**"
 	};
 	
