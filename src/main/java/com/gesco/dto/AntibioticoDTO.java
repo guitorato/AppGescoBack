@@ -6,6 +6,7 @@ import com.gesco.domain.Antibiotico;
 
 public class AntibioticoDTO {
 	
+	private Integer id;
 	private String nome;
 	private String nomeComercial;
 	private LocalDate dataValidade;
@@ -15,6 +16,7 @@ public class AntibioticoDTO {
 	
 	public AntibioticoDTO() {}
 	public AntibioticoDTO(Antibiotico obj) {
+		this.id = obj.getId();
 		this.nome = obj.getNome();
 		this.nomeComercial = obj.getNomeComercial();
 		this.dataValidade = obj.getDataValidade();
@@ -23,7 +25,12 @@ public class AntibioticoDTO {
 		this.funcionario = obj.getFuncionario().getNome();
 	}
 
-
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	public String getNome() {
 		return nome;
 	}
