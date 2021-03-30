@@ -5,8 +5,10 @@ import java.time.LocalDate;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.gesco.domain.Funcionario;
 import com.gesco.domain.Hospital;
 import com.gesco.domain.Paciente;
 import com.gesco.repositories.FuncionarioRepository;
@@ -19,12 +21,15 @@ public class DBService {
 	
 	@Autowired
 	private FuncionarioRepository funcionarioRepository;
+	
 	@Autowired
 	private HospitalRepository hospitalRepository;
+	
 	@Autowired
 	private PacienteRepository pacienteRepository;
-	
-	
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	public void instantiateTestDataBase() throws ParseException {
 		
@@ -44,6 +49,17 @@ public class DBService {
 		pacienteRepository.save(pac2);
 		pacienteRepository.save(pac3);
 		pacienteRepository.save(pac4);
+		
+		
+		Funcionario func1 = new Funcionario("Danilo", "danilo", passwordEncoder.encode("123456"), 2466644, 1 , hosp1);
+		Funcionario func2 = new Funcionario("Test", "test", passwordEncoder.encode("123456"), 2466644, 2 , hosp1);
+		Funcionario func3 = new Funcionario("Teste1", "teste1", passwordEncoder.encode("123456"), 2466644, 3 , hosp1);
+		Funcionario func4 = new Funcionario("Admin", "admin", passwordEncoder.encode("123456"), 2466644, 4 , hosp1);
+		
+		funcionarioRepository.save(func1);
+		funcionarioRepository.save(func2);
+		funcionarioRepository.save(func3);
+		funcionarioRepository.save(func4);
 		
 	}
 

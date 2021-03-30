@@ -22,6 +22,8 @@ import com.gesco.dto.PacienteDTO;
 import com.gesco.helpers.Helper;
 import com.gesco.repositories.PacienteRepository;
 import com.gesco.services.PacienteService;
+import com.gesco.services.exceptions.NoSuchElementException;
+import com.gesco.services.exceptions.ObjectNotFoundException;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -70,10 +72,17 @@ public class PacienteResource {
 	@ApiOperation(value = "ATUALIZA TODOS OS PACIENTES")
 	@RequestMapping(value="/{registro}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> update(@Valid @RequestBody Paciente obj , @PathVariable Integer registro){
-		obj.setId(repo.findByRegistroLike(registro).get().getId());
-		obj.setRegistro(registro);
-		obj = service.update(obj);
-		return ResponseEntity.noContent().build();
+		try {
+			obj.setId(repo.findByRegistroLike(registro).get().getId());
+			obj.setRegistro(registro);
+			obj = service.update(obj);
+			return ResponseEntity.noContent().build();
+			
+		} catch (NoSuchElementException e) {
+			
+			throw new ObjectNotFoundException("Registro Incorreto");
+		}
+	
 	}
 	
 	
