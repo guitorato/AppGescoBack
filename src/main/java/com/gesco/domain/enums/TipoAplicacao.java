@@ -2,10 +2,10 @@ package com.gesco.domain.enums;
 
 public enum TipoAplicacao {
 
-	EV(1,"EV"),
-	IM(2,"IM"),
-	EVIM(3,"EV / IM"),
-	COMP(4,"COMP");
+	ENDOVENOSA(1,"ENDOVENOSA(EV)"),
+	INTRAMUSCULAR(2,"INTRAMUSCULAR(IM)"),
+	ENDOVENOSAeINTRAMUSCULAR(3,"ENDOVENOSA(EV) / INTRAMUSCULAR(IM)"),
+	COMPRIMIDO(4,"COMPRIMIDO(CP)");
 	
 	private int cod;
 	private String descricao;
