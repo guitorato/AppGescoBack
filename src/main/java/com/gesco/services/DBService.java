@@ -8,9 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.gesco.domain.Antibiotico;
 import com.gesco.domain.Funcionario;
 import com.gesco.domain.Hospital;
 import com.gesco.domain.Paciente;
+import com.gesco.domain.enums.TipoAplicacao;
+import com.gesco.repositories.AntibioticoRepository;
 import com.gesco.repositories.FuncionarioRepository;
 import com.gesco.repositories.HospitalRepository;
 import com.gesco.repositories.PacienteRepository;
@@ -27,6 +30,9 @@ public class DBService {
 	
 	@Autowired
 	private PacienteRepository pacienteRepository;
+	
+	@Autowired
+	private AntibioticoRepository antibioticoRepository;
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -61,6 +67,16 @@ public class DBService {
 		funcionarioRepository.save(func3);
 		funcionarioRepository.save(func4);
 		
+		
+		Antibiotico atb1 = new Antibiotico("CEFTRIAXONA", "ROCEFIN", LocalDate.now(), "45785-1", 1 , func3);
+		Antibiotico atb2 = new Antibiotico("CEFALOTINA", "KEFLIN", LocalDate.now(), "78555", 1 , func3);
+		Antibiotico atb3 = new Antibiotico("CIPROFLOXACINO", "CIPRO", LocalDate.now(), "A575SD", 1 , func3);
+		Antibiotico atb4 = new Antibiotico("METRONIDAZOL", "FLAGYL", LocalDate.now(), "BF8217", 1 , func3);
+		
+		antibioticoRepository.save(atb1);
+		antibioticoRepository.save(atb2);
+		antibioticoRepository.save(atb3);
+		antibioticoRepository.save(atb4);
 	}
 
 }
