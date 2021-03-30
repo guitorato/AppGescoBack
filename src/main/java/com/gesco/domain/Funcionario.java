@@ -1,7 +1,10 @@
 package com.gesco.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -44,6 +48,10 @@ public class Funcionario implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="hospital_id") 
 	private Hospital hospital;
+	
+	@JsonIgnore 
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "funcionario", fetch = FetchType.EAGER)
+	private List<Antibiotico> antibioticos = new ArrayList<>();
 	
 	public Funcionario() {}
 	public Funcionario(String nome, String login, String senha, Integer conselho, Integer tipoFuncionario,
