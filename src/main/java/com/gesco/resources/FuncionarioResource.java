@@ -44,6 +44,7 @@ public class FuncionarioResource {
 		@RequestMapping(value="/{login}", method = RequestMethod.PUT)
 		public ResponseEntity<Void> update(@RequestBody Funcionario obj , @PathVariable String login){
 			obj.setId(repo.findByLogin(login).get().getId());
+			obj.setLogin(login);
 			obj = service.update(obj);
 			return ResponseEntity.noContent().build();
 		}

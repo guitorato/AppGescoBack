@@ -27,13 +27,20 @@ public class FuncionarioService {
 	
 	// -------- MÉTODO PARA DELETAR O FUNCIONÁRIO UTILIZANDO O LOGIN
 		public void delete (String login) {
-			repo.findByLogin(login);
-			try {
+			if(repo.findByLogin(login).isEmpty()) {
+			
+				throw new ObjectNotFoundException(("Login não encontrado"));
 				
-				repo.deleteByLogin(login);
-			}catch (DataIntegrityViolationException e) {
-				throw new DataIntegrityException("Não é possível excluir");
+			}else {
+				try {
+					
+					repo.deleteById(repo.findByLogin(login).get().getId());;
+					
+				}catch (DataIntegrityViolationException e) {
+					throw new DataIntegrityException("Não é possível excluir");
+				}
 			}
+			
 		}
 		
 		
@@ -41,7 +48,8 @@ public class FuncionarioService {
 		public Funcionario update (Funcionario obj) {
 			
 			if(repo.findByLogin(obj.getLogin()).isPresent()) {
-				repo.findByLoginLike(obj.getLogin());
+				String hashedPassword = passwordEncoder.encode(obj.getSenha());
+				obj.setSenha(hashedPassword);
 				return repo.save(obj);
 			}else{
 				throw new ObjectNotFoundException(("Login incorreto"));
