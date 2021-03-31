@@ -20,6 +20,8 @@ import com.gesco.dto.FuncionarioDTO;
 import com.gesco.repositories.FuncionarioRepository;
 import com.gesco.services.FuncionarioService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping(value="api/funcionario")
 public class FuncionarioResource {
@@ -31,7 +33,8 @@ public class FuncionarioResource {
 	private FuncionarioRepository repo;
 
 
-	// -------- MÉTODO DE DELETAR O CADASTRO DO FUNCIONÁRIO
+	
+	   @ApiOperation(value = "DELETANDO O FUNCIONÁRIO POR LOGIN")
 		@RequestMapping(value="/{login}", method = RequestMethod.DELETE)
 		public ResponseEntity<Void> delete(@PathVariable String login){
 			
@@ -40,7 +43,7 @@ public class FuncionarioResource {
 		}
 		
 		
-		// -------- MÉTODO PUT PARA ATUALIZAR O CADASTRO DO FUNCIONÁRIO
+	   @ApiOperation(value = "ATUALIZANDO O FUNCIONÁRIO POR LOGIN")
 		@RequestMapping(value="/{login}", method = RequestMethod.PUT)
 		public ResponseEntity<Void> update(@RequestBody Funcionario obj , @PathVariable String login){
 			obj.setId(repo.findByLogin(login).get().getId());
@@ -50,7 +53,7 @@ public class FuncionarioResource {
 		}
 		
 		
-		// -------- MÉTODO DE LISTAR TODOS OS FUNCIONÁRIOS, FAZ A MESMA COISA DE O findAll SÓ QUE ESSE É FILTRADO
+	   @ApiOperation(value = "MÉTODO DE LISTAR TODOS OS FUNCIONÁRIOS, FAZ A MESMA COISA DE O findAll SÓ QUE ESSE É FILTRADO")
 		@RequestMapping(value="/page", method = RequestMethod.GET)
 		public ResponseEntity<Page<FuncionarioDTO>> findPage(
 				@RequestParam(value = "page", defaultValue = "0") Integer page, 
@@ -64,7 +67,7 @@ public class FuncionarioResource {
 			return ResponseEntity.ok().body(listDto);
 		}
 		
-		// -------- MÉTODO DE LISTAR OS FUNCIONÁRIO, UTILIZEI UMA CLASSE DTO PARA FILTRAS AS INFORMAÇÕES PELO JSON
+	   @ApiOperation(value = "LISTA OS FUNCIONÁRIO")
 		@RequestMapping(method = RequestMethod.GET)
 		public ResponseEntity<List<FuncionarioDTO>> findAll(){
 			
@@ -73,7 +76,7 @@ public class FuncionarioResource {
 			return ResponseEntity.ok().body(listDto);
 		}
 		
-		// -------- MÉTODO POST PARA CADASTRAR O FUNCIONÁRIO
+	   @ApiOperation(value = "INSERIR NOVOS FUNCIONÁRIOS")
 		@RequestMapping(method = RequestMethod.POST)
 		public ResponseEntity<Void> insert(@RequestBody Funcionario obj){
 			obj = service.insert(obj);
