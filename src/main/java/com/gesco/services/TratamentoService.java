@@ -1,5 +1,6 @@
 package com.gesco.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,6 +12,7 @@ import com.gesco.domain.Prescricao;
 import com.gesco.domain.Tratamento;
 import com.gesco.dto.PrescricaoDTO;
 import com.gesco.dto.TratamentoDTO;
+import com.gesco.helpers.Helper;
 import com.gesco.repositories.FuncionarioRepository;
 import com.gesco.repositories.HospitalRepository;
 import com.gesco.repositories.PacienteRepository;
@@ -34,6 +36,14 @@ public class TratamentoService {
 	@Autowired
 	private FuncionarioRepository funcionarioRepo;
 	
+	@ApiOperation(value = "Busca de Tratamento pelo registro do paciente")
+	public Optional<Tratamento> findRegistroPaciente (Integer registro) {
+		if(repo.findRegistroPaciente(registro).isPresent()) {
+			return repo.findRegistroPaciente(registro);
+		}else {
+			throw new ObjectNotFoundException("Não existe tratamento cadastrado para esse paciente");
+		}
+	}
 
 	@ApiOperation(value = "LISTA DE TODOS OS TRATAMENTOS S/FILTRO")
 	public List<Tratamento> findAll(){
@@ -43,8 +53,7 @@ public class TratamentoService {
 	@ApiOperation(value = "INSERE UM TRATAMENTO")
 	public Tratamento insert (TratamentoDTO dto) {
 		Tratamento obj = new Tratamento();
-			    Integer idPaciente = pacienteRepo.findById(pacienteRepo.findByRegistroLike(dto.getRegistroPaciente()));
-				if(repo.findPaciente(idPaciente).get().getId().equals(null)) {
+				if(repo.findRegistroPaciente(dto.getRegistroPaciente()).isEmpty()) {
 					
 				
 		
@@ -67,7 +76,15 @@ public class TratamentoService {
 					throw new ObjectNotFoundException("Não foi encontrado algum dado");
 				}
 		}else {
-			throw new ObjectNotFoundException("Não foi encontrado algum dado");
+			throw new ObjectNotFoundException("Já Existe um Tratamento cadastrado para esse Paciente");
 		}
 	}
+	
+	public List<Tratamento> findNomePaciente(String paciente){
+		    List<Tratamento> list = null;
+			list = new ArrayList<Tratamento>();
+			return list = repo.findByNome(paciente.toUpperCase());
+		
+	}
+	
 }
