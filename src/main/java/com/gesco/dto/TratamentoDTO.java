@@ -1,6 +1,7 @@
 package com.gesco.dto;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.gesco.domain.Prescricao;
 import com.gesco.domain.Tratamento;
@@ -57,8 +58,10 @@ public class TratamentoDTO {
 		this.nomePaciente = nomePaciente;
 	}
 
-	public List<Prescricao> getPrescricoes() {
-		return prescricoes;
+	public List<PrescricaoDTO> getPrescricoes() {
+		List<Prescricao> list = prescricoes;
+		List<PrescricaoDTO> listDto = list.stream().map(obj -> new PrescricaoDTO(obj)).collect(Collectors.toList());
+		return listDto;
 	}
 
 	public void setPrescricoes(List<Prescricao> prescricoes) {
