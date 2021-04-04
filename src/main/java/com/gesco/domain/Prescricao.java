@@ -154,7 +154,7 @@ public class Prescricao implements Serializable {
 		return StatusTratamento.toEnum(statusTratamento);
 	}
 
-	public void setTipoFuncionario(StatusTratamento statusTratamento) {
+	public void setStatusTratamento(StatusTratamento statusTratamento) {
 		this.statusTratamento = statusTratamento.getCod();
 	}
 
