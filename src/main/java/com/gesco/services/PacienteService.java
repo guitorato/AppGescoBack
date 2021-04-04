@@ -107,6 +107,7 @@ public class PacienteService {
 			if(repo.findByRegistro(obj.getRegistro()).isEmpty()) {
 				
 				obj.setId(null);
+				obj.setNome(obj.getNome().toUpperCase());
 				obj.setStatusPaciente(true);
 				return repo.save(obj);
 				
