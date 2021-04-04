@@ -11,8 +11,9 @@ public class TratamentoDTO {
 	private Integer registroPaciente;
 	private String nomePaciente;
 	private List<Prescricao> prescricoes;
-	private String statusTratamento;
+	private String loginFucnionario;
 	private String funcionario;
+	private String hospital;
 	
 	public TratamentoDTO() {}
 	public TratamentoDTO(Tratamento obj) {
@@ -20,11 +21,18 @@ public class TratamentoDTO {
 		this.registroPaciente = obj.getPaciente().getRegistro();
 		this.nomePaciente = obj.getPaciente().getNome();
 		this.prescricoes = obj.getPrescricoes();
-		this.statusTratamento = obj.getStatusTratamento().getDescricao();
+		this.loginFucnionario = obj.getFuncionario().getLogin();
 		this.funcionario = obj.getFuncionario().getNome();
+		this.hospital = obj.getHospital().getNome();
 	}
 	
 	
+	public String getLoginFucnionario() {
+		return loginFucnionario;
+	}
+	public void setLoginFucnionario(String loginFucnionario) {
+		this.loginFucnionario = loginFucnionario;
+	}
 	public String getDescDiagnostico() {
 		return descDiagnostico;
 	}
@@ -57,20 +65,18 @@ public class TratamentoDTO {
 		this.prescricoes = prescricoes;
 	}
 
-	public String getStatusTratamento() {
-		return statusTratamento;
-	}
-
-	public void setStatusTratamento(String statusTratamento) {
-		this.statusTratamento = statusTratamento;
-	}
-
 	public String getFuncionario() {
 		return funcionario;
 	}
 
 	public void setFuncionario(String funcionario) {
 		this.funcionario = funcionario;
+	}
+	public String getHospital() {
+		return hospital;
+	}
+	public void setHospital(String hospital) {
+		this.hospital = hospital;
 	}
 	
 	

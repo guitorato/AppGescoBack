@@ -30,9 +30,6 @@ public class Tratamento implements Serializable {
 	
 	@Column(name="ds_diagnostico",nullable = false, length = 255 )
 	private String descDiagnostico;
-	
-	@Column(name="ic_status_paciente",nullable = false)
-	private Integer statusTratamento;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="funcionario_id") 
@@ -50,10 +47,9 @@ public class Tratamento implements Serializable {
 	private List<Prescricao> prescricoes = new ArrayList<>();
 	
 	public Tratamento () {}
-	public Tratamento(String descDiagnostico, Integer statusTratamento, Funcionario funcionario, Paciente paciente,
+	public Tratamento(String descDiagnostico, Funcionario funcionario, Paciente paciente,
 			Hospital hospital, List<Prescricao> prescricoes) {
 		this.descDiagnostico = descDiagnostico;
-		this.statusTratamento = statusTratamento;
 		this.funcionario = funcionario;
 		this.paciente = paciente;
 		this.hospital = hospital;
@@ -95,17 +91,10 @@ public class Tratamento implements Serializable {
 	public void setPrescricoes(List<Prescricao> prescricoes) {
 		this.prescricoes = prescricoes;
 	}
-	public StatusTratamento getStatusTratamento() {
-		return StatusTratamento.toEnum(statusTratamento);
-	}
-
-	public void setTipoFuncionario(StatusTratamento statusTratamento) {
-		this.statusTratamento = statusTratamento.getCod();
-	}
+	
 	@Override
 	public String toString() {
-		return "Tratamento [id=" + id + ", descDiagnostico=" + descDiagnostico + ", statusTratamento="
-				+ statusTratamento + ", funcionario=" + funcionario + ", paciente=" + paciente + ", hospital="
+		return "Tratamento [id=" + id + ", descDiagnostico=" + descDiagnostico + ", funcionario=" + funcionario + ", paciente=" + paciente + ", hospital="
 				+ hospital + ", prescricoes=" + prescricoes + "]";
 	}
 	@Override
