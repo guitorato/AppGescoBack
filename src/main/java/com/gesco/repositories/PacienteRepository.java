@@ -27,6 +27,8 @@ public interface PacienteRepository extends JpaRepository<Paciente, Integer> {
 	Paciente deleteByRegistro (Integer registro);
 	
 	List<Paciente> findByStatusPaciente (boolean statusTratamento);
+
+	Integer findById(Optional<Paciente> findByRegistroLike);
 	 
 	 
 	
