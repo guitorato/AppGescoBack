@@ -37,10 +37,10 @@ public class Antibiotico implements Serializable {
 	private String nomeComercial;
 	
 	@Column(name="dt_validade",nullable = false , length = 100 )
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dataValidade;
 	
 	@Column(name="cd_lote",nullable = false)
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private String lote;
 	
 	@Column(name="cd_tipo_aplicacao",nullable = false)
