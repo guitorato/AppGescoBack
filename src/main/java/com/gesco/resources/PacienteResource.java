@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.gesco.domain.Hospital;
 import com.gesco.domain.Paciente;
 import com.gesco.dto.PacienteDTO;
 import com.gesco.helpers.Helper;
@@ -57,6 +58,15 @@ public class PacienteResource {
 	    List<PacienteDTO> listDto = list.stream().map(obj -> new PacienteDTO(obj)).collect(Collectors.toList());
 		
 		return ResponseEntity.ok().body(listDto);
+	}
+	
+	@ApiOperation(value = "LISTANDO TODOS OS PACIENTES")
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<List<Paciente>> findAll(){
+		
+		List<Paciente> list = service.findAll();
+		
+		return ResponseEntity.ok().body(list);
 	}
 	
 	
