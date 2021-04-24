@@ -1,8 +1,6 @@
 package com.gesco.resources;
 
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -17,16 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.gesco.domain.Antibiotico;
-import com.gesco.domain.Prescricao;
 import com.gesco.domain.Tratamento;
-import com.gesco.dto.AntibioticoDTO;
-import com.gesco.dto.FuncionarioDTO;
-import com.gesco.dto.PrescricaoDTO;
 import com.gesco.dto.TratamentoDTO;
 import com.gesco.helpers.Helper;
-import com.gesco.repositories.TratamentoRepository;
-import com.gesco.services.PrescricaoService;
 import com.gesco.services.TratamentoService;
 
 import io.swagger.annotations.ApiOperation;
@@ -38,11 +29,6 @@ public class TratamentoResource {
 	@Autowired
 	private TratamentoService service;
 	
-	@Autowired
-	private PrescricaoService prescricaoService;
-	
-	@Autowired
-	private TratamentoRepository repo;
 	
 	@ApiOperation(value = "LISTA TODOS OS TRATAMENTOS S/FILTRO")
 	@RequestMapping(method = RequestMethod.GET)

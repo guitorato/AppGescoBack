@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +33,7 @@ public class AntibioticoResource {
 	
 	@ApiOperation(value = "INSERIR NOVO ANTIBIOTICO")
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insert(@RequestBody Antibiotico obj){
+	public ResponseEntity<Void> insert(@Valid @RequestBody Antibiotico obj){
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").build(obj.getId());
@@ -40,7 +42,7 @@ public class AntibioticoResource {
 
 	@ApiOperation(value = "ATUALIZA O ANTIBIOTICO, BUSCANDO PELO ID")
 	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> update(@RequestBody Antibiotico obj , @PathVariable Integer id){
+	public ResponseEntity<Void> update(@Valid @RequestBody Antibiotico obj , @PathVariable Integer id){
 		obj.setId(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();

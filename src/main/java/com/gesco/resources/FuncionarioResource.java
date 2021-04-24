@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -45,7 +47,7 @@ public class FuncionarioResource {
 		
 	   @ApiOperation(value = "ATUALIZANDO O FUNCIONÁRIO POR LOGIN")
 		@RequestMapping(value="/{login}", method = RequestMethod.PUT)
-		public ResponseEntity<Void> update(@RequestBody Funcionario obj , @PathVariable String login){
+		public ResponseEntity<Void> update(@Valid @RequestBody Funcionario obj , @PathVariable String login){
 			obj.setId(repo.findByLogin(login).get().getId());
 			obj.setLogin(login);
 			obj = service.update(obj);
@@ -78,7 +80,7 @@ public class FuncionarioResource {
 		
 	   @ApiOperation(value = "INSERIR NOVOS FUNCIONÁRIOS")
 		@RequestMapping(method = RequestMethod.POST)
-		public ResponseEntity<Void> insert(@RequestBody Funcionario obj){
+		public ResponseEntity<Void> insert(@Valid @RequestBody Funcionario obj){
 			obj = service.insert(obj);
 			URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 					.path("/{id}").build(obj.getId());

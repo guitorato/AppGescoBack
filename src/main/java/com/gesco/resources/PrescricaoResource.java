@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,16 +16,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.gesco.domain.Antibiotico;
-import com.gesco.domain.Hospital;
-import com.gesco.domain.Paciente;
 import com.gesco.domain.Prescricao;
-import com.gesco.domain.Tratamento;
-import com.gesco.dto.AntibioticoDTO;
 import com.gesco.dto.PrescricaoDTO;
 import com.gesco.dto.StatusTratamentoDTO;
 import com.gesco.services.PrescricaoService;
-import com.gesco.services.exceptions.DataIntegrityException;
 
 import io.swagger.annotations.ApiOperation;
 

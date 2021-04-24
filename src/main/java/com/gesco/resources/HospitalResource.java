@@ -4,6 +4,8 @@ package com.gesco.resources;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,7 +39,7 @@ public class HospitalResource {
 	
 	@ApiOperation(value = "INSERINDO UM NOVO HOSPITAL")
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insert(@RequestBody Hospital obj){
+	public ResponseEntity<Void> insert(@Valid @RequestBody Hospital obj){
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").build(obj.getId());
@@ -46,7 +48,7 @@ public class HospitalResource {
 	
 	@ApiOperation(value = "ATUALIZANDO UM HOSPITAL PELO ID")
 	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> update(@RequestBody Hospital obj , @PathVariable Integer id){
+	public ResponseEntity<Void> update(@Valid @RequestBody Hospital obj , @PathVariable Integer id){
 		obj.setId(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();

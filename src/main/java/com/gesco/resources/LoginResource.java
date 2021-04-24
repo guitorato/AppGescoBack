@@ -1,8 +1,9 @@
 package com.gesco.resources;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,7 +27,7 @@ public class LoginResource {
 	@ApiOperation(value = "API PARA LOGIN DO USUÁRIO")
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus(code = HttpStatus.ACCEPTED)
-	public SessaoDTO loginUsuario(@Validated @RequestBody LoginDTO loginDto) throws Exception {
+	public SessaoDTO loginUsuario(@Valid @RequestBody LoginDTO loginDto) throws Exception {
 		 
 		return loginService.validarLogin(loginDto);
 	}
