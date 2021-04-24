@@ -1,7 +1,6 @@
 package com.gesco.dto;
 
 import com.gesco.domain.Prescricao;
-import com.gesco.domain.enums.StatusTratamento;
 
 public class StatusTratamentoDTO {
 	

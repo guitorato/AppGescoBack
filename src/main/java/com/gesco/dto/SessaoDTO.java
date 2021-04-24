@@ -4,7 +4,6 @@ package com.gesco.dto;
 import java.util.Date;
 
 import com.gesco.domain.Funcionario;
-import com.gesco.domain.Hospital;
 
 
 
