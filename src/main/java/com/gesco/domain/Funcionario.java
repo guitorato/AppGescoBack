@@ -15,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -31,12 +33,17 @@ public class Funcionario implements Serializable {
 	private Integer id;
 	
 	@Column(name="nm_funcionario",nullable = false , length = 100 )
+	@Size(max = 100 , message ="O Tamanho do nome deve ser {max} caracteres")
+	@NotBlank(message = "Preencha o campo do nome do paciente")
 	private String nome;
 	
 	@Column(name="nm_login",nullable = false , length = 30, unique = true )
+	@Size(max = 30 , message ="O Tamanho do login deve ser {max} caracteres")
+	@NotBlank(message = "Preencha o campo do login")
 	private String login;
 	
 	@Column(name="ds_senha",nullable = false)
+	@NotBlank(message = "Preencha o campo da senha")
 	private String senha;
 	
 	@Column(name="cd_conselho",nullable = true , length = 10 )

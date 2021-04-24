@@ -15,9 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.gesco.domain.enums.StatusTratamento;
-import com.gesco.domain.enums.TipoFuncionario;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="Tratamentos")
@@ -29,6 +28,8 @@ public class Tratamento implements Serializable {
 	private Integer id;
 	
 	@Column(name="ds_diagnostico",nullable = false, length = 255 )
+	@NotBlank(message = "Preencha o campo do diagnóstico")
+	@Size(max = 255 , message ="O Tamanho do diagnóstico deve ser {max} caracteres")
 	private String descDiagnostico;
 
 	@ManyToOne(fetch = FetchType.LAZY)

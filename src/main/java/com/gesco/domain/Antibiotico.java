@@ -13,12 +13,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.gesco.domain.enums.TipoAplicacao;
-import com.gesco.domain.enums.TipoFuncionario;
 
 @Entity
 @Table(name="Antibioticos")
@@ -31,16 +33,22 @@ public class Antibiotico implements Serializable {
 	private Integer id;
 	
 	@Column(name="nm_antibiotico",nullable = false , length = 100 )
+	@Size(max = 100 , message ="O Tamanho do nome deve ser {max} caracteres")
+	@NotBlank(message = "Preencha o campo do nome")
 	private String nome;
 	
 	@Column(name="nm_comercial",nullable = false , length = 100 )
+	@Size(max = 100 , message ="O Tamanho do nome comercial deve ser {max} caracteres")
+	@NotBlank(message = "Preencha o campo do nome comercial")
 	private String nomeComercial;
 	
 	@Column(name="dt_validade",nullable = false , length = 100 )
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@NotNull(message = "Preencha o campo da data de validade")
 	private LocalDate dataValidade;
 	
 	@Column(name="cd_lote",nullable = false)
+	@NotBlank(message = "Preencha o campo do lote")
 	private String lote;
 	
 	@Column(name="cd_tipo_aplicacao",nullable = false)
@@ -51,6 +59,7 @@ public class Antibiotico implements Serializable {
 	private Funcionario funcionario;
 	
 	public Antibiotico () {}
+	
 	public Antibiotico(String nome, String nomeComercial, LocalDate dataValidade, String lote, Integer tipoAplicacao,
 			Funcionario funcionario) {
 		this.nome = nome;

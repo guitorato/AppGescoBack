@@ -13,6 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -26,9 +28,13 @@ public class Hospital implements Serializable {
 	private Integer id;
 	
 	@Column(name="nm_hospital",nullable = false , length = 100 )
+	@Size(max = 100 , message ="O Tamanho do nome deve ser {max} caracteres")
+	@NotBlank(message = "Preencha o campo do nome")
 	private String nome;
 	
 	@Column(name="ds_hospital",nullable = false , length = 100)
+	@Size(max = 100 , message ="O Tamanho da descricao deve ser {max} caracteres")
+	@NotBlank(message = "Preencha o campo da descricao")
 	private String descricao;
 	
 	@JsonIgnore 

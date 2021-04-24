@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -28,26 +30,32 @@ public class Prescricao implements Serializable {
 	private Integer id;
 	
 	@Column(name="ds_prescricao", nullable = true, length = 255)
+	@Size(max = 255 , message ="O Tamanho da descrição deve ser {max} caracteres")
 	private String descPrescricao;
 	
 	@Column(name="cd_status_tratamento",nullable = false)
 	private Integer statusTratamento;
 	
 	@Column(name="ds_descricao_status",nullable = true , length = 100 )
+	@Size(max = 100 , message ="O Tamanho da descrição do status deve ser {max} caracteres")
 	private String descStatusTratamento;
 	
 	@Column(name="dt_inicio_tratamento",nullable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@NotNull(message = "Preencha o campo da data de início do tratamento")
 	private LocalDate inicioTratamento;
 	
 	@Column(name="dt_fim_tratamento",nullable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@NotNull(message = "Preencha o campo da data do fim do tratamento")
 	private LocalDate fimTratamento;
 	
 	@Column(name="vl_dosagem_diaria",nullable = false , length = 4)
+	@NotNull(message = "Preencha o campo da dosagem diária")
 	private Double dosagemDiaria;
 	
 	@Column(name="cd_periodiociadade",nullable = false, length = 2)
+	@NotNull(message = "Preencha o campo da data da periodiociadade")
 	private Integer periodiociadade;
 	
 	@ManyToOne(fetch = FetchType.LAZY)

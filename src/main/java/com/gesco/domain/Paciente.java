@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -25,13 +28,17 @@ public class Paciente implements Serializable {
 	private Integer id;
 	
 	@Column(name="nm_paciente",nullable = false , length = 100 )
+	@Size(max = 100 , message ="O Tamanho do nome deve ser {max} caracteres")
+	@NotBlank(message = "Preencha o campo do nome")
 	private String nome;
 	
 	@Column(name="cd_registro",nullable = false , unique = true)
+	@NotNull(message = "Preencha o campo do registro")
 	private Integer registro;
 	
 	@Column(name="dt_paciente",nullable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@NotNull(message = "Preencha o campo da data de nascimento")
 	private LocalDate dataNascimento;
 	
 	@Column(name="ic_sexo",nullable = false)
